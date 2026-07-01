@@ -121,7 +121,7 @@ body {
   font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: 600;
   line-height: 1.04;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .type-meta {

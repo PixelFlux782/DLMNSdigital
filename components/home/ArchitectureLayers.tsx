@@ -11,11 +11,11 @@ export function ArchitectureLayers() {
   return (
     <Section
       id="architektur"
-      eyebrow="Architecture"
-      title="From interface to system logic"
-      description="Every DLMNS Digital offer is built in layers: interface, data model, automation and product logic."
+      eyebrow="Architektur"
+      title="Von Strategie bis Systemlogik"
+      description="Jedes digitale Produkt von DLMNS entsteht in klaren Ebenen: Strategie, Interface, Datenmodell, Automatisierung und Produktlogik."
       className="border-t border-border/60 bg-surface/20"
-      titleClassName="uppercase tracking-tight"
+      titleClassName="uppercase"
     >
       <div className="relative mx-auto max-w-3xl">
         <div
@@ -81,7 +81,7 @@ export function ArchitectureLayers() {
                         >
                           {layer.layerCode} / {layer.layerLabel}
                         </p>
-                        <h3 className="mt-2 font-display text-2xl font-semibold uppercase tracking-tight text-foreground md:text-3xl">
+                        <h3 className="mt-2 font-display text-2xl font-semibold uppercase text-foreground md:text-3xl">
                           {layer.title}
                         </h3>
                       </div>
@@ -93,7 +93,7 @@ export function ArchitectureLayers() {
                         )}
                         aria-hidden="true"
                       >
-                        Depth / {String(depth).padStart(2, "0")}
+                        Tiefe / {String(depth).padStart(2, "0")}
                       </span>
                     </div>
 

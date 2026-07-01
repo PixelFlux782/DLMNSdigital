@@ -103,9 +103,9 @@ function SystemCaseStudyBlock({
           <div className="flex flex-col gap-4 border-b border-border/50 pb-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
-                System {String(index + 1).padStart(2, "0")} / Project
+                System {String(index + 1).padStart(2, "0")} / Produkt
               </p>
-              <h3 className="mt-2 font-display text-3xl font-semibold uppercase tracking-tight text-foreground md:text-4xl">
+              <h3 className="mt-2 font-display text-3xl font-semibold uppercase text-foreground md:text-4xl">
                 {study.name}
               </h3>
             </div>
@@ -121,7 +121,7 @@ function SystemCaseStudyBlock({
 
           <div className="mt-10 space-y-10">
             <div>
-              <SectionLabel code="01" label="System Snapshot" accent={study.accent} />
+              <SectionLabel code="01" label="Systemansicht" accent={study.accent} />
               <div className="mt-4">
                 <SystemSnapshotPanel study={study} />
               </div>
@@ -129,7 +129,7 @@ function SystemCaseStudyBlock({
 
             <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
               <div>
-                <SectionLabel code="02" label="System Flow" accent={study.accent} />
+                <SectionLabel code="02" label="Systemfluss" accent={study.accent} />
                 <div className="mt-5 flex flex-col items-start">
                   {study.flowSteps.map((step, stepIndex) => (
                     <div key={step} className="w-full">
@@ -181,7 +181,7 @@ function SystemCaseStudyBlock({
                         </span>
                         <div className="border border-border/40 bg-background/30 px-4 py-3">
                           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                            Layer {String(layerIndex + 1).padStart(2, "0")}
+                            Ebene {String(layerIndex + 1).padStart(2, "0")}
                           </p>
                           <p className="mt-1 font-display text-lg font-semibold uppercase tracking-wide text-foreground">
                             {layer}
@@ -199,7 +199,7 @@ function SystemCaseStudyBlock({
 
             <div className="border-t border-border/50 pt-8">
               <SectionLabel code="04" label="Ergebnis" accent={study.accent} />
-              <p className="mt-4 max-w-2xl font-display text-2xl font-semibold uppercase tracking-tight text-foreground md:text-3xl">
+              <p className="mt-4 max-w-2xl font-display text-2xl font-semibold uppercase text-foreground md:text-3xl">
                 {study.outcome}
               </p>
             </div>
@@ -207,7 +207,7 @@ function SystemCaseStudyBlock({
 
           <div className="mt-10 flex items-center justify-between border-t border-border/50 pt-6">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/70">
-              Live System / {study.statusLabel}
+              Systemstatus / {study.statusLabel}
             </p>
             <Link
               href={study.url}
@@ -234,10 +234,10 @@ export function SystemsShowcase() {
   return (
     <Section
       id="systeme"
-      eyebrow="Systems"
-      title="Systems in practice"
-      description="Project systems under DLMNS Digital: visible snapshots, flows, architecture and outcomes from real products."
-      titleClassName="uppercase tracking-tight"
+      eyebrow="Systeme"
+      title="Systeme in der Praxis"
+      description="Ausgewählte Produktarchitekturen von DLMNS: sichtbare Interfaces, Systemflüsse, technische Ebenen und konkrete Ergebnisse."
+      titleClassName="uppercase"
     >
       <div className="flex flex-col gap-16 md:gap-20">
         {systemCaseStudies.map((study, index) => (
@@ -247,7 +247,7 @@ export function SystemsShowcase() {
 
       <div className="mt-14 text-center">
         <Button href="#kontakt" variant="secondary">
-          Discuss a system
+          System anfragen
         </Button>
       </div>
     </Section>

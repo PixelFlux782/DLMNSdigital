@@ -23,7 +23,7 @@ function ThinkingFlow({
     <div
       className="relative"
       role="group"
-      aria-label="Interactive digital systems model"
+      aria-label="Interaktives Modell digitaler Systeme"
     >
       <div
         className="pointer-events-none absolute inset-x-8 top-1/2 hidden h-px -translate-y-1/2 bg-border/40 md:block"
@@ -115,7 +115,7 @@ function ThinkingFlow({
         animate={prefersReducedMotion ? undefined : { opacity: [0.5, 0.85, 0.5] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        Complexity → Structure → Orientation → Action
+        Komplexität → Struktur → Orientierung → System
       </motion.p>
     </div>
   );
@@ -160,7 +160,7 @@ function ExamplePanel({
                 phase.accent === "gold" ? "text-gold" : "text-cyan",
               )}
             >
-              Examples / {phase.label}
+              Beispiele / {phase.label}
             </p>
             <ul className="mt-5 space-y-3">
               {phase.examples.map((example, index) => (
@@ -195,11 +195,11 @@ function ExamplePanel({
             className="relative flex h-full flex-col justify-center"
           >
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-              Systems model
+              Systemmodell
             </p>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted md:text-base">
-              {systemThinkingCopy.description} Select a phase to see how this
-              logic appears in concrete systems.
+              {systemThinkingCopy.description} Wählen Sie eine Phase, um die
+              Logik in konkreten Systemen zu sehen.
             </p>
           </motion.div>
         )}
@@ -221,7 +221,7 @@ export function SystemThinkingSection() {
       title={systemThinkingCopy.title}
       description={systemThinkingCopy.description}
       className="border-t border-border/60 bg-surface/20"
-      titleClassName="uppercase tracking-tight"
+      titleClassName="uppercase"
     >
       <div className="flex flex-col gap-10">
         <motion.div

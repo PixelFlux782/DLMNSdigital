@@ -1,4 +1,4 @@
-export type ProjectStatus = "Live" | "In Entwicklung" | "Beta";
+export type ProjectStatus = "Live" | "In Entwicklung" | "Konzept";
 
 export type Project = {
   id: string;
@@ -21,36 +21,38 @@ export const projects: Project[] = [
     id: "shophebel",
     name: "Shophebel",
     description:
-      "E-commerce and website analysis tool for clearer conversion, trust and action priorities.",
+      "Analyse- und Optimierungssystem für Onlineshops mit Fokus auf Conversion, Vertrauen und klare Handlung.",
     problem:
-      "Many shops and websites lose customers without knowing where friction appears.",
+      "Viele Shops verlieren Umsatz, ohne präzise zu sehen, wo Vertrauen, Orientierung oder technische Qualität brechen.",
     approach:
-      "A tool system that makes UX, trust, conversion and technical signals visible and translates them into practical recommendations.",
-    systemLogic: "Analysis → Scoring → Action",
-    outcome: "Live MVP — measurable website diagnosis with AI-supported recommendations.",
-    techStack: ["Next.js", "Supabase", "Stripe", "AI"],
+      "Ein Diagnosesystem macht UX-, Trust-, Conversion- und Techniksignale sichtbar und übersetzt sie in priorisierte Empfehlungen.",
+    systemLogic: "Analyse → Scoring → Handlung",
+    outcome:
+      "Live-MVP mit messbarer Shopdiagnose und KI-gestützten Optimierungshinweisen.",
+    techStack: ["Next.js", "Supabase", "Stripe", "KI"],
     status: "Live",
-    statusLabel: "Live MVP",
+    statusLabel: "Live-MVP",
     url: "https://shophebel.vercel.app/",
-    tags: ["E-Commerce", "Conversion", "AI"],
+    tags: ["E-Commerce", "Conversion", "Analyse"],
     accent: "cyan",
   },
   {
     id: "symbolraum",
     name: "Symbolraum",
     description:
-      "An interactive meaning space for symbols, Hebrew language layers and connected knowledge.",
+      "Interaktiver Bedeutungsraum für biblische Symbole, Räume, Texte und verbundene Wissensstrukturen.",
     problem:
-      "Complex meaning networks are difficult to access through linear interfaces.",
+      "Komplexe Bedeutungsnetze sind in linearen Interfaces schwer zugänglich und verlieren schnell ihren Zusammenhang.",
     approach:
-      "A digital experience that presents symbols, relations and meaning as a navigable network.",
-    systemLogic: "Symbol → Relation → Meaning → Experience",
-    outcome: "Active development — connected meaning space with codex and experience layers.",
-    techStack: ["Meaning Graph", "Hebrew Codex", "React Flow", "Next.js"],
+      "Eine digitale Erfahrung stellt Symbole, Relationen und Bedeutung als navigierbares Netzwerk dar.",
+    systemLogic: "Symbol → Relation → Bedeutung → Erfahrung",
+    outcome:
+      "Aktive Entwicklung eines verbundenen Bedeutungsraums mit Codex- und Erfahrungsebenen.",
+    techStack: ["Meaning Graph", "Text-Codex", "React Flow", "Next.js"],
     status: "In Entwicklung",
     statusLabel: "Aktive Entwicklung",
     url: "https://bibel-symbolraum.vercel.app/",
-    tags: ["Experience", "Knowledge", "Interactive"],
+    tags: ["Experience", "Wissen", "Interaktion"],
     accent: "cyan",
   },
 ];

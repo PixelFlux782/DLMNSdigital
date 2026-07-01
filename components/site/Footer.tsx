@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
-import { footerCopy, siteConfig } from "@/lib/site";
+import { footerCopy, logoAssets, siteConfig } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -18,15 +18,15 @@ export function Footer() {
           <div className="max-w-sm">
             <Link href="/" className="inline-block">
               <Image
-                src="/DLMNSdigital.png"
-                alt="DLMNS Digital"
-                width={1774}
-                height={887}
-                className="h-auto w-[12rem] object-contain opacity-90"
-                sizes="192px"
+                src={logoAssets.digital.src}
+                alt={logoAssets.digital.alt}
+                width={logoAssets.digital.width}
+                height={logoAssets.digital.height}
+                className="h-auto w-[13rem] object-contain opacity-95"
+                sizes="208px"
               />
             </Link>
-            <p className="mt-5 font-display text-lg font-semibold tracking-tight text-foreground">
+            <p className="mt-5 font-display text-lg font-semibold text-foreground">
               {footerCopy.tagline}
             </p>
           </div>
@@ -34,7 +34,7 @@ export function Footer() {
           <div className="flex flex-col gap-10 sm:flex-row sm:gap-16 lg:gap-20">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-muted">
-                Projects
+                Produkte
               </p>
               <ul className="mt-4 space-y-2.5">
                 {projects.map((project) => (
@@ -54,7 +54,7 @@ export function Footer() {
 
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-muted">
-                Contact
+                Kontakt
               </p>
               <ul className="mt-4 space-y-2.5">
                 <li>
@@ -62,7 +62,7 @@ export function Footer() {
                     href="#kontakt"
                     className="text-sm text-muted transition-colors hover:text-gold-light"
                   >
-                    Start a project
+                    Projekt anfragen
                   </Link>
                 </li>
                 <li>
@@ -94,7 +94,7 @@ export function Footer() {
             </div>
 
             <p className="text-sm text-muted/80">
-              © {year} DLMNS Digital. A digital branch of DLMNS.
+              © {year} DLMNS Digital. Digitalstudio von DALEMANS.
             </p>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/lib/site";
+import { logoAssets, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -42,16 +42,16 @@ export function Header() {
           onClick={() => setIsOpen(false)}
         >
           <Image
-            src="/DLMNSdigital.png"
-            alt="DLMNS Digital"
-            width={1774}
-            height={887}
+            src={logoAssets.digital.src}
+            alt={logoAssets.digital.alt}
+            width={logoAssets.digital.width}
+            height={logoAssets.digital.height}
             priority
-            className="h-auto w-[8.75rem] object-contain sm:w-[11rem] md:w-[12rem]"
-            sizes="(max-width: 640px) 140px, 192px"
+            className="h-auto w-[9.5rem] object-contain sm:w-[12rem] md:w-[13rem]"
+            sizes="(max-width: 640px) 152px, 208px"
           />
-          <span className="hidden max-w-[11rem] text-[11px] leading-snug tracking-wide text-muted lg:block">
-            Digital branch of DLMNS
+          <span className="hidden max-w-[12rem] text-[11px] leading-snug text-muted lg:block">
+            Digitalstudio von DALEMANS
           </span>
         </Link>
 
@@ -72,7 +72,7 @@ export function Header() {
 
         <div className="hidden md:block">
           <Button href="#kontakt" variant="secondary" size="sm">
-            Start a project
+            Projekt anfragen
           </Button>
         </div>
 
@@ -118,7 +118,7 @@ export function Header() {
               className="w-full"
               onClick={() => setIsOpen(false)}
             >
-              Start a project
+              Projekt anfragen
             </Button>
           </div>
         </nav>

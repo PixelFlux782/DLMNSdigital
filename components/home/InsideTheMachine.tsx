@@ -57,7 +57,7 @@ function LayerBlueprint({
             >
               {layer.layerCode}
             </p>
-            <h3 className="mt-2 font-display text-2xl font-semibold uppercase tracking-tight text-foreground md:text-3xl">
+            <h3 className="mt-2 font-display text-2xl font-semibold uppercase text-foreground md:text-3xl">
               {layer.title}
             </h3>
           </div>
@@ -161,10 +161,10 @@ export function InsideTheMachine() {
   return (
     <Section
       id="inside-the-machine"
-      eyebrow="Inside the Machine"
-      title="Below the interface"
-      description="A system view of a real product: layers, relations and data flows behind the visible experience."
-      titleClassName="uppercase tracking-tight"
+      eyebrow="Systemarchitektur"
+      title="Unter der Oberfläche"
+      description="Ein Blick auf ein reales Produkt: Ebenen, Relationen und Datenflüsse hinter der sichtbaren Erfahrung."
+      titleClassName="uppercase"
     >
       <div className="relative mx-auto max-w-4xl">
         <div
@@ -176,7 +176,7 @@ export function InsideTheMachine() {
 
         <div className="relative mb-8 border border-border/40 bg-background/20 px-5 py-4 md:px-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-            Reference system / Shophebel
+            Referenzsystem / Shophebel
           </p>
           <p className="mt-2 font-mono text-[11px] leading-relaxed text-foreground/80">
             Interface → Datenmodell → Automatisierung → Produktlogik

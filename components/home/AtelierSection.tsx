@@ -1,8 +1,13 @@
 "use client";
 
-import { User } from "lucide-react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
-import { atelierContent, atelierCurrentSystems, developerProfile } from "@/lib/site";
+import {
+  atelierContent,
+  atelierCurrentSystems,
+  developerProfile,
+  logoAssets,
+} from "@/lib/site";
 import { Section } from "@/components/ui/Section";
 import { cn } from "@/lib/utils";
 
@@ -39,19 +44,26 @@ function OperatorFrame() {
 
         <div className="border-b border-border/50 px-4 py-3">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold-muted">
-            Frame / Branch
+            Rahmen / Studio
           </p>
         </div>
 
         <div className="relative aspect-[4/5] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.04] via-transparent to-cyan/[0.03]" />
-          <div className="flex h-full flex-col items-center justify-center gap-4 p-8">
-            <div className="flex h-28 w-28 items-center justify-center border border-border-strong bg-background/80">
-              <User className="h-12 w-12 text-muted/60" aria-hidden="true" />
+          <div className="flex h-full flex-col items-center justify-center gap-4 p-6">
+            <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden border border-border-strong bg-background/80">
+              <Image
+                src={logoAssets.main.src}
+                alt={logoAssets.main.alt}
+                width={logoAssets.main.width}
+                height={logoAssets.main.height}
+                className="h-full w-full object-cover opacity-90"
+                sizes="280px"
+              />
             </div>
             {atelierContent.portraitPlaceholder && (
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-                DLMNS
+                DALEMANS / DLMNS
               </p>
             )}
           </div>
@@ -68,7 +80,7 @@ function ArchitecturePoints() {
   return (
     <div className="relative mt-8 border-t border-border/50 pt-8">
       <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-        Architecture points
+        Architekturpunkte
       </p>
 
       <div className="relative mt-5">
@@ -121,7 +133,7 @@ function CurrentSystemsLog() {
     <div className="mt-10 border border-border/50 bg-background/50">
       <div className="border-b border-border/40 px-4 py-2.5">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold-muted">
-          Current Systems
+          Aktuelle Systeme
         </p>
       </div>
 
@@ -135,7 +147,7 @@ function CurrentSystemsLog() {
             )}
           >
             <p className="text-muted">
-              <span className="text-gold/60">BUILDING</span>
+              <span className="text-gold/60">SYSTEM</span>
               <span className="text-muted/40"> / </span>
               <span className="text-foreground/85">{entry.building}</span>
             </p>
@@ -148,7 +160,7 @@ function CurrentSystemsLog() {
         ))}
 
         <p className="mt-3 border-t border-border/25 pt-3 text-[10px] uppercase tracking-[0.14em] text-muted/45">
-          dlmns.digital · DLMNS ecosystem · log idle
+          dlmns.digital · DALEMANS · Systemprotokoll
         </p>
       </div>
     </div>
@@ -221,10 +233,10 @@ export function AtelierSection() {
     <Section
       id="atelier"
       eyebrow={atelierContent.eyebrow}
-      title="Digital branch of DLMNS"
-      description="DLMNS Digital is the digital business area within the DLMNS ecosystem."
+      title="Digitalstudio von DALEMANS"
+      description="DLMNS Digital entwickelt digitale Systeme, die Strategie, Design, Entwicklung und Automatisierung verbinden."
       className="border-t border-border/60 bg-surface/20"
-      titleClassName="uppercase tracking-tight"
+      titleClassName="uppercase"
     >
       <motion.div
         className="relative overflow-hidden border border-border/60 bg-background/30"
@@ -266,7 +278,7 @@ export function AtelierSection() {
             </div>
 
             <div className="mt-8">
-              <h3 className="font-display text-3xl font-semibold uppercase tracking-tight text-foreground md:text-4xl">
+              <h3 className="font-display text-3xl font-semibold uppercase text-foreground md:text-4xl">
                 {atelierContent.title}
               </h3>
               <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">

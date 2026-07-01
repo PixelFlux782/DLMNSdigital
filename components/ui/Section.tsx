@@ -50,7 +50,7 @@ export function Section({
             {title && (
               <h2
                 className={cn(
-                  "font-display text-3xl font-semibold tracking-tight text-foreground md:text-5xl md:leading-[1.06]",
+                  "font-display text-3xl font-semibold text-foreground md:text-5xl md:leading-[1.06]",
                   titleClassName,
                 )}
               >

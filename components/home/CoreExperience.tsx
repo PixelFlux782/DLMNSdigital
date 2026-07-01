@@ -336,7 +336,7 @@ function PhaseIndicator({
       </p>
       <h3
         className={cn(
-          "mt-2 font-display text-2xl font-semibold uppercase tracking-tight transition-all duration-500 md:text-3xl lg:text-4xl",
+          "mt-2 font-display text-2xl font-semibold uppercase transition-all duration-500 md:text-3xl lg:text-4xl",
           isActive ? "text-foreground" : "text-foreground/35",
         )}
       >
@@ -401,7 +401,7 @@ export function CoreExperience() {
             <p className="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-gold-muted">
               {coreExperienceCopy.eyebrow}
             </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
+            <h2 className="font-display text-3xl font-semibold text-foreground md:text-5xl lg:text-[3.5rem] lg:leading-[1.05]">
               {coreExperienceCopy.title}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted md:text-lg">

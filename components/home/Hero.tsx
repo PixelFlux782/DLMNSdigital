@@ -9,7 +9,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { heroCopy } from "@/lib/site";
+import { heroCopy, logoAssets } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
 
 export function Hero() {
@@ -56,7 +56,7 @@ export function Hero() {
           </motion.p>
 
           <motion.h1
-            className="font-display text-4xl font-semibold uppercase leading-[1.06] tracking-tight text-foreground sm:text-5xl lg:text-[3.75rem] lg:leading-[1.02]"
+            className="font-display text-4xl font-semibold leading-[1.06] text-foreground sm:text-5xl lg:text-[3.75rem] lg:leading-[1.02]"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -79,7 +79,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Button href="#transformation" size="lg">
+            <Button href="#artefakte" size="lg">
               {heroCopy.primaryCta}
               <ArrowDown className="h-4 w-4" />
             </Button>
@@ -142,10 +142,10 @@ export function Hero() {
               />
 
               <Image
-                src="/DLMNSdigital.png"
-                alt="DLMNS Digital — Building intelligent digital systems"
-                width={1774}
-                height={887}
+                src={logoAssets.digital.src}
+                alt={logoAssets.digital.alt}
+                width={logoAssets.digital.width}
+                height={logoAssets.digital.height}
                 priority
                 sizes="(max-width: 1024px) 90vw, 650px"
                 className="relative z-10 h-full w-full object-contain drop-shadow-[0_32px_80px_rgba(0,0,0,0.55)]"
@@ -171,9 +171,9 @@ export function Hero() {
               className="pointer-events-none absolute -left-2 bottom-8 hidden font-mono text-[9px] uppercase tracking-[0.22em] text-muted/45 md:block"
               aria-hidden="true"
             >
-              <span>Depth / Layer 01</span>
+              <span>Tiefe / Ebene 01</span>
               <br />
-              <span>Ambient / Ice-Cyan</span>
+              <span>System / Ice-Cyan</span>
             </div>
           </div>
         </motion.div>

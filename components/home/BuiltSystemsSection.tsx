@@ -15,12 +15,12 @@ const statusStyles: Record<
     label: "LIVE",
     className: "border-cyan/25 bg-cyan/[0.06] text-cyan",
   },
-  "IN DEVELOPMENT": {
-    label: "IN DEVELOPMENT",
+  "IN ENTWICKLUNG": {
+    label: "IN ENTWICKLUNG",
     className: "border-gold/25 bg-gold/[0.06] text-gold",
   },
-  RESEARCH: {
-    label: "RESEARCH",
+  KONZEPT: {
+    label: "VORBEREITET",
     className: "border-border bg-background/50 text-muted",
   },
 };
@@ -73,7 +73,7 @@ function ArtifactEntry({
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-3">
               <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
-                Project {String(index + 1).padStart(2, "0")}
+                Produkt {String(index + 1).padStart(2, "0")}
               </p>
               <span
                 className={cn(
@@ -85,7 +85,7 @@ function ArtifactEntry({
               </span>
             </div>
 
-            <h3 className="mt-3 font-display text-2xl font-semibold uppercase tracking-tight text-foreground md:text-3xl">
+            <h3 className="mt-3 font-display text-2xl font-semibold uppercase text-foreground md:text-3xl">
               {system.title}
             </h3>
 
@@ -106,20 +106,16 @@ function ArtifactEntry({
           <div className="flex shrink-0 flex-col gap-4 md:w-56 md:items-end md:text-right">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-                Technology
+                Architektur
               </p>
               <p className="mt-1.5 font-mono text-[11px] leading-relaxed text-foreground/85">
                 {system.technology}
               </p>
             </div>
 
-            {(system.id === "shophebel" || system.id === "symbolraum") && (
+            {system.url ? (
               <Link
-                href={
-                  system.id === "shophebel"
-                    ? "https://shophebel.vercel.app/"
-                    : "https://bibel-symbolraum.vercel.app/"
-                }
+                href={system.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -129,7 +125,15 @@ function ArtifactEntry({
                     : "text-cyan hover:text-cyan-light",
                 )}
               >
-                Open system
+                {system.cta}
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            ) : (
+              <Link
+                href="#kontakt"
+                className="group inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-cyan transition-colors hover:text-cyan-light"
+              >
+                {system.cta}
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             )}
@@ -154,11 +158,11 @@ export function BuiltSystemsSection() {
   return (
     <Section
       id="artefakte"
-      eyebrow="Projects"
-      title="Offer architecture"
-      description="Software systems, AI and automation, digital experiences and e-commerce tools inside the DLMNS Digital frame."
+      eyebrow="Produktwelt"
+      title="Digitale Produkte von DLMNS"
+      description="Eigene Systeme und vorbereitete Produktarchitekturen für Analyse, Bedeutung, Prozesse und digitale Wertschöpfung."
       className="border-t border-border/60 bg-surface/20"
-      titleClassName="uppercase tracking-tight"
+      titleClassName="uppercase"
     >
       <div className="relative mx-auto max-w-3xl">
         {builtSystems.map((system, index) => (

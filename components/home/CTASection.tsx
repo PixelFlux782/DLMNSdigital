@@ -16,7 +16,7 @@ export function CTASection() {
         aria-hidden="true"
       >
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted/40">
-          System flow
+          Systemfluss
         </span>
         <span className="h-px w-full max-w-xs bg-gradient-to-r from-transparent via-border-strong to-transparent" />
         <span className="font-mono text-[10px] text-muted/35">▼</span>
@@ -65,7 +65,7 @@ export function CTASection() {
         </div>
 
         <div className="relative px-6 py-12 md:px-10 md:py-16 lg:py-20">
-          <h2 className="max-w-3xl font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl md:leading-[1.12] lg:text-[2.75rem]">
+          <h2 className="max-w-3xl font-display text-3xl font-semibold text-foreground md:text-4xl md:leading-[1.12] lg:text-[2.75rem]">
             {ctaCopy.title}
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted md:text-lg md:leading-8">
@@ -74,14 +74,14 @@ export function CTASection() {
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <Button
-              href={`mailto:${siteConfig.email}?subject=DLMNS%20Digital%20Project`}
+              href={`mailto:${siteConfig.email}?subject=DLMNS%20Digital%20Projektanfrage`}
               size="lg"
             >
               {ctaCopy.primaryCta}
               <ArrowUpRight className="h-4 w-4" />
             </Button>
             <Button
-              href={`mailto:${siteConfig.email}?subject=DLMNS%20Digital%20First%20Look`}
+              href={`mailto:${siteConfig.email}?subject=DLMNS%20Digital%20Erster%20Blick`}
               variant="secondary"
               size="lg"
             >
@@ -91,7 +91,7 @@ export function CTASection() {
           </div>
 
           <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.16em] text-muted/55">
-            Entry / DLMNS Digital ·{" "}
+            Einstieg / DLMNS Digital ·{" "}
             <a
               href={`mailto:${siteConfig.email}`}
               className="text-foreground/70 underline decoration-border underline-offset-4 transition-colors hover:text-gold-light"

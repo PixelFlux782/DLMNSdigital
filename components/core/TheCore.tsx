@@ -95,7 +95,7 @@ const COORDINATES = [
   {
     id: "complexity",
     code: "C01",
-    label: "COMPLEXITY",
+    label: "KOMPLEXITÄT",
     finalX: 12,
     finalY: 14,
     chaosX: 22,
@@ -105,7 +105,7 @@ const COORDINATES = [
   {
     id: "structure",
     code: "S02",
-    label: "STRUCTURE",
+    label: "STRUKTUR",
     finalX: 88,
     finalY: 14,
     chaosX: 74,
@@ -115,7 +115,7 @@ const COORDINATES = [
   {
     id: "orientation",
     code: "O03",
-    label: "ORIENTATION",
+    label: "ORIENTIERUNG",
     finalX: 12,
     finalY: 86,
     chaosX: 28,
@@ -125,7 +125,7 @@ const COORDINATES = [
   {
     id: "experience",
     code: "E04",
-    label: "EXPERIENCE",
+    label: "SYSTEM",
     finalX: 88,
     finalY: 86,
     chaosX: 78,
@@ -799,18 +799,18 @@ export function TheCore() {
             className="pointer-events-none absolute -left-1 top-6 font-mono text-[9px] uppercase tracking-[0.24em] text-muted/35 md:left-2"
             aria-hidden="true"
           >
-            <span>ARTIFACT / CORE</span>
+            <span>ARTEFAKT / KERN</span>
             <br />
-            <span>STATE / {String(phase + 1).padStart(2, "0")}</span>
+            <span>ZUSTAND / {String(phase + 1).padStart(2, "0")}</span>
           </div>
 
           <div
             className="pointer-events-none absolute -right-1 bottom-6 font-mono text-[9px] uppercase tracking-[0.24em] text-muted/35 md:right-2"
             aria-hidden="true"
           >
-            <span>DEPTH / 05</span>
+            <span>TIEFE / 05</span>
             <br />
-            <span>LAYER / ACTIVE</span>
+            <span>EBENE / AKTIV</span>
           </div>
 
           <motion.div
