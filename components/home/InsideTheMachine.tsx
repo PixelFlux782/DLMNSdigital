@@ -47,8 +47,8 @@ function LayerBlueprint({
           aria-hidden="true"
         />
 
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:gap-10">
-          <div className="lg:w-48 lg:shrink-0">
+        <div className="relative grid gap-6 xl:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] xl:gap-10">
+          <div className="min-w-0 border-b border-border/45 pb-5 xl:border-b-0 xl:border-r xl:pb-0 xl:pr-6">
             <p
               className={cn(
                 "font-mono text-[10px] uppercase tracking-[0.24em]",
@@ -57,13 +57,13 @@ function LayerBlueprint({
             >
               {layer.layerCode}
             </p>
-            <h3 className="mt-2 font-display text-2xl font-semibold uppercase text-foreground md:text-3xl">
+            <h3 className="mt-2 max-w-full break-words font-display text-2xl font-semibold uppercase leading-tight text-foreground md:text-[1.7rem]">
               {layer.title}
             </h3>
           </div>
 
-          <div className="grid flex-1 gap-5 sm:grid-cols-3">
-            <div>
+          <div className="grid min-w-0 gap-5 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)_minmax(0,1.15fr)]">
+            <div className="min-w-0">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
                 Komponenten
               </p>
@@ -71,22 +71,22 @@ function LayerBlueprint({
                 {layer.components.map((component) => (
                   <li
                     key={component}
-                    className="flex items-center gap-2 font-mono text-[11px] text-foreground/85"
+                    className="flex min-w-0 items-start gap-2 font-mono text-[11px] leading-relaxed text-foreground/85"
                   >
                     <span
                       className={cn(
-                        "h-1 w-1 shrink-0",
+                        "mt-1.5 h-1 w-1 shrink-0",
                         isGold ? "bg-gold/70" : "bg-cyan/70",
                       )}
                       aria-hidden="true"
                     />
-                    {component}
+                    <span className="min-w-0 break-words">{component}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
                 Relationen
               </p>
@@ -94,7 +94,7 @@ function LayerBlueprint({
                 {layer.relations.map((relation) => (
                   <li
                     key={relation}
-                    className="font-mono text-[10px] leading-relaxed text-muted"
+                    className="break-words font-mono text-[10px] leading-relaxed text-muted"
                   >
                     {relation}
                   </li>
@@ -102,13 +102,13 @@ function LayerBlueprint({
               </ul>
             </div>
 
-            <div>
+            <div className="min-w-0">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
                 Systemfluss
               </p>
               <div
                 className={cn(
-                  "mt-3 border px-3 py-2.5 font-mono text-[10px] leading-relaxed",
+                  "mt-3 break-words border px-3 py-2.5 font-mono text-[10px] leading-relaxed",
                   isGold
                     ? "border-gold/15 bg-gold/[0.02] text-gold-light/80"
                     : "border-cyan/12 bg-cyan/[0.02] text-foreground/80",
@@ -166,7 +166,7 @@ export function InsideTheMachine() {
       description="Ein Blick auf ein reales Produkt: Ebenen, Relationen und Datenflüsse hinter der sichtbaren Erfahrung."
       titleClassName="uppercase"
     >
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative mx-auto max-w-5xl">
         <div
           className="pointer-events-none absolute left-[1.125rem] top-8 bottom-8 hidden w-px md:left-6 md:block"
           aria-hidden="true"

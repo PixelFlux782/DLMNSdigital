@@ -8,11 +8,11 @@ export const siteConfig = {
   author: "DLMNS Digital",
   email: "digital@dlmns.com",
   nav: [
-    { label: "Systeme", href: "#systeme" },
-    { label: "Produkte", href: "#artefakte" },
-    { label: "Prozess", href: "#transformation" },
-    { label: "Studio", href: "#atelier" },
-    { label: "Kontakt", href: "#kontakt" },
+    { label: "Systeme", href: "/systeme" },
+    { label: "Produkte", href: "/#artefakte" },
+    { label: "Prozess", href: "/#transformation" },
+    { label: "Studio", href: "/#atelier" },
+    { label: "Kontakt", href: "/#kontakt" },
   ],
 } as const;
 
@@ -204,6 +204,8 @@ export type BuiltSystemStatus = "LIVE" | "IN ENTWICKLUNG" | "KONZEPT";
 export type BuiltSystem = {
   id: string;
   title: string;
+  category: string;
+  benefit: string;
   systemType: string;
   description: string;
   technology: string;
@@ -211,36 +213,45 @@ export type BuiltSystem = {
   accent: "gold" | "cyan";
   cta: string;
   url?: string;
+  externalUrl?: string;
 };
 
 export const builtSystems: readonly BuiltSystem[] = [
   {
     id: "shophebel",
     title: "Shophebel",
+    category: "Analysewerkzeug",
+    benefit: "Umsatzpotenziale, Reibung und Vertrauenssignale im Shop klar priorisieren.",
     systemType: "Analyse- und Optimierungssystem für Onlineshops",
     description:
       "Shophebel prüft Onlineshops auf Vertrauen, Conversion, technische Reibung und konkrete Optimierungspotenziale.",
     technology: "Next.js · Supabase · Stripe · KI",
     status: "LIVE",
     accent: "cyan",
-    cta: "System ansehen",
-    url: "https://shophebel.vercel.app/",
+    cta: "Detailseite ansehen",
+    url: "/systeme/shophebel",
+    externalUrl: "https://shophebel.vercel.app/",
   },
   {
     id: "symbolraum",
     title: "Symbolraum",
+    category: "Interaktiver Wissensraum",
+    benefit: "Bedeutungen, Relationen und persönliche Wege als erfahrbares System öffnen.",
     systemType: "Interaktiver Bedeutungsraum",
     description:
       "Symbolraum macht biblische Symbole, Räume und Texte als verbundenes Wissens- und Erfahrungsnetz zugänglich.",
     technology: "Meaning Graph · Codex · Next.js · React Flow",
     status: "IN ENTWICKLUNG",
     accent: "cyan",
-    cta: "Vorschau öffnen",
-    url: "https://bibel-symbolraum.vercel.app/",
+    cta: "Detailseite ansehen",
+    url: "/systeme/symbolraum",
+    externalUrl: "https://bibel-symbolraum.vercel.app/",
   },
   {
     id: "custom-systems",
     title: "Weitere Systeme",
+    category: "Individuelle Produktarchitektur",
+    benefit: "Eigene Prozesse, Daten und Markenlogik in belastbare digitale Werkzeuge übersetzen.",
     systemType: "Individuelle digitale Produktarchitektur",
     description:
       "Maßgeschneiderte Werkzeuge für Prozesse, Analyse, Automatisierung und Markenaufbau - präzise geplant, sauber entwickelt, erweiterbar gedacht.",
@@ -248,6 +259,7 @@ export const builtSystems: readonly BuiltSystem[] = [
     status: "KONZEPT",
     accent: "cyan",
     cta: "Projekt anfragen",
+    url: "/#kontakt",
   },
 ] as const;
 

@@ -1,58 +1,60 @@
 import Image from "next/image";
 import Link from "next/link";
-import { projects } from "@/lib/projects";
-import { footerCopy, logoAssets, siteConfig } from "@/lib/site";
+import { builtSystems, footerCopy, logoAssets, siteConfig } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-border/60 bg-surface/30">
+    <footer className="relative border-t border-border/60 bg-background/70">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border-strong to-transparent"
         aria-hidden="true"
       />
 
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-          <div className="max-w-sm">
-            <Link href="/" className="inline-block">
-              <Image
-                src={logoAssets.digital.src}
-                alt={logoAssets.digital.alt}
-                width={logoAssets.digital.width}
-                height={logoAssets.digital.height}
-                className="h-auto w-[13rem] object-contain opacity-95"
-                sizes="208px"
-              />
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 md:py-16">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:gap-16">
+          <div className="max-w-md">
+            <Link href="/" className="inline-flex">
+              <span className="flex h-11 w-[10.5rem] items-center justify-center overflow-hidden border border-border/70 bg-black/75 px-3.5 shadow-[inset_0_1px_0_rgba(237,247,251,0.06)]">
+                <Image
+                  src={logoAssets.digital.src}
+                  alt={logoAssets.digital.alt}
+                  width={logoAssets.digital.width}
+                  height={logoAssets.digital.height}
+                  className="h-auto w-full object-contain opacity-95"
+                  sizes="168px"
+                />
+              </span>
             </Link>
-            <p className="mt-5 font-display text-lg font-semibold text-foreground">
+            <p className="mt-5 max-w-xs font-display text-xl font-semibold leading-tight text-foreground">
               {footerCopy.tagline}
+            </p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+              Digitale Produkte, Analysewerkzeuge und individuelle Systeme mit klarer Architektur.
             </p>
           </div>
 
-          <div className="flex flex-col gap-10 sm:flex-row sm:gap-16 lg:gap-20">
-            <div>
+          <div className="grid gap-8 sm:grid-cols-2 sm:gap-12">
+            <div className="border-t border-border/50 pt-5 sm:border-t-0 sm:pt-0">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-muted">
                 Produkte
               </p>
               <ul className="mt-4 space-y-2.5">
-                {projects.map((project) => (
-                  <li key={project.id}>
+                {builtSystems.map((system) => (
+                  <li key={system.id}>
                     <Link
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={system.url ?? "/systeme"}
                       className="text-sm text-muted transition-colors hover:text-gold-light"
                     >
-                      {project.name}
+                      {system.title}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div>
+            <div className="border-t border-border/50 pt-5 sm:border-t-0 sm:pt-0">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-muted">
                 Kontakt
               </p>
@@ -78,22 +80,21 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-border/50 pt-8">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
+        <div className="mt-12 border-t border-border/50 pt-6">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="grid gap-2 sm:grid-cols-3 sm:gap-4">
               {footerCopy.systemMeta.map((item) => (
-                <p
+                <div
                   key={item.key}
-                  className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted/70"
+                  className="border border-border/40 bg-surface/20 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.14em] text-muted/70"
                 >
-                  <span className="text-gold-muted/80">{item.key}</span>
-                  <span className="text-muted/35"> / </span>
-                  <span>{item.value}</span>
-                </p>
+                  <span className="block text-gold-muted/80">{item.key}</span>
+                  <span className="mt-1 block leading-relaxed">{item.value}</span>
+                </div>
               ))}
             </div>
 
-            <p className="text-sm text-muted/80">
+            <p className="text-sm text-muted/70">
               © {year} DLMNS Digital. Digitalstudio von DALEMANS.
             </p>
           </div>

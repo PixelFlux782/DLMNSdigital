@@ -44,10 +44,10 @@ export function Hero() {
         <div className="absolute bottom-0 left-0 h-[280px] w-[280px] rounded-full bg-cyan/[0.025] blur-[80px]" />
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-14 xl:gap-20">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 xl:gap-20">
         <div className="relative z-10">
           <motion.p
-            className="mb-5 font-mono text-[11px] uppercase tracking-[0.26em] text-gold-muted"
+            className="mb-5 max-w-[19rem] font-mono text-[11px] uppercase leading-relaxed tracking-[0.26em] text-gold-muted sm:max-w-none"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -56,7 +56,7 @@ export function Hero() {
           </motion.p>
 
           <motion.h1
-            className="font-display text-4xl font-semibold leading-[1.06] text-foreground sm:text-5xl lg:text-[3.75rem] lg:leading-[1.02]"
+            className="max-w-[11ch] font-display text-4xl font-semibold leading-[1.06] text-foreground sm:max-w-none sm:text-5xl lg:text-[3.75rem] lg:leading-[1.02]"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -65,7 +65,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg"
+            className="mt-6 max-w-[20rem] text-base leading-relaxed text-muted sm:max-w-xl md:text-lg"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -91,14 +91,14 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="relative mx-auto w-full max-w-2xl lg:max-w-none"
+          className="relative mx-auto w-full max-w-xl lg:max-w-none"
           initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative aspect-[1774/887] w-full">
+          <div className="relative mx-auto aspect-[1.06/1] w-full max-w-[22rem] sm:max-w-[34rem]">
             <motion.div
-              className="absolute inset-[6%] rounded-full bg-cyan/[0.055] blur-[70px]"
+              className="absolute inset-[12%] rounded-full bg-cyan/[0.055] blur-[70px]"
               aria-hidden="true"
               style={{ opacity: glowOpacity }}
               animate={
@@ -126,55 +126,63 @@ export function Hero() {
                 scale: imageScale,
               }}
             >
-              <motion.div
-                className="pointer-events-none absolute inset-[12%] rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(circle at 40% 35%, rgba(133,213,232,0.12) 0%, transparent 55%)",
-                }}
-                animate={
-                  prefersReducedMotion
-                    ? undefined
-                    : { opacity: [0.4, 0.7, 0.4] }
-                }
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                aria-hidden="true"
-              />
+              <div className="relative z-10 h-full border border-border/60 bg-background/55 p-5 shadow-[0_32px_80px_rgba(0,0,0,0.48)] backdrop-blur-xl sm:p-6">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.16]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px)",
+                    backgroundSize: "34px 34px",
+                  }}
+                  aria-hidden="true"
+                />
 
-              <Image
-                src={logoAssets.digital.src}
-                alt={logoAssets.digital.alt}
-                width={logoAssets.digital.width}
-                height={logoAssets.digital.height}
-                priority
-                sizes="(max-width: 1024px) 90vw, 650px"
-                className="relative z-10 h-full w-full object-contain drop-shadow-[0_32px_80px_rgba(0,0,0,0.55)]"
-              />
+                <div className="relative flex h-full flex-col justify-between gap-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="overflow-hidden border border-border/70 bg-black/80 px-4 py-3 shadow-[inset_0_1px_0_rgba(237,247,251,0.06)]">
+                      <Image
+                        src={logoAssets.digital.src}
+                        alt={logoAssets.digital.alt}
+                        width={logoAssets.digital.width}
+                        height={logoAssets.digital.height}
+                        priority
+                        sizes="220px"
+                        className="h-auto w-[11.5rem] object-contain sm:w-[13rem]"
+                      />
+                    </div>
+                    <p className="hidden max-w-[8rem] text-right font-mono text-[9px] uppercase tracking-[0.2em] text-muted/60 sm:block">
+                      Systemstudio / DLMNS
+                    </p>
+                  </div>
 
-              <motion.div
-                className="pointer-events-none absolute inset-0 z-20"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(133,213,232,0.05) 0%, transparent 40%, rgba(58,138,158,0.04) 100%)",
-                }}
-                animate={
-                  prefersReducedMotion
-                    ? undefined
-                    : { opacity: [0.3, 0.55, 0.3] }
-                }
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                aria-hidden="true"
-              />
+                  <div>
+                    <p className="font-display text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
+                      Building Intelligent Systems.
+                    </p>
+                    <p className="mt-3 max-w-[18rem] text-sm leading-relaxed text-muted sm:max-w-sm">
+                      Strategie, Interface, Datenstruktur und Automatisierung als ein belastbares System.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    {["Eigene Produkte", "Analyse", "Automatisierung"].map(
+                      (signal) => (
+                        <div
+                          key={signal}
+                          className="border border-border/50 bg-surface/35 px-3 py-3"
+                        >
+                          <span className="mb-3 block h-1 w-6 bg-cyan/75" />
+                          <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+                            {signal}
+                          </p>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
-            <div
-              className="pointer-events-none absolute -left-2 bottom-8 hidden font-mono text-[9px] uppercase tracking-[0.22em] text-muted/45 md:block"
-              aria-hidden="true"
-            >
-              <span>Tiefe / Ebene 01</span>
-              <br />
-              <span>System / Ice-Cyan</span>
-            </div>
           </div>
         </motion.div>
       </div>
