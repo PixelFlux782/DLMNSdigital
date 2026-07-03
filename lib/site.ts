@@ -18,6 +18,12 @@ export const siteConfig = {
 
 export const logoAssets = {
   digital: {
+    src: "/Logo-tranparent.png",
+    alt: "DLMNS Digital - Building Intelligent Digital Systems",
+    width: 1774,
+    height: 887,
+  },
+  digitalOpaque: {
     src: "/DLMNSdigital-logo.png",
     alt: "DLMNS Digital - Building Intelligent Digital Systems",
     width: 1774,
@@ -31,11 +37,20 @@ export const logoAssets = {
   },
 } as const;
 
+export const backgroundAssets = {
+  cinematic: {
+    src: "/cinematic-background.png",
+    alt: "",
+    width: 1720,
+    height: 914,
+  },
+} as const;
+
 export const heroCopy = {
   eyebrow: "DLMNS Digital · Digitalstudio von DALEMANS",
-  headline: "Digitale Systeme, die Komplexität in Klarheit verwandeln.",
+  headline: "Digitale Produktsysteme für Analyse, Prozesse und Wachstum.",
   subline:
-    "DLMNS entwickelt intelligente Webprodukte, Analysewerkzeuge und digitale Infrastrukturen für Marken, Prozesse und neue Geschäftsmodelle.",
+    "DLMNS baut digitale Produkte, Analysewerkzeuge und Automatisierungssysteme, die Arbeit sichtbar, steuerbar und skalierbar machen.",
   primaryCta: "Digitale Produkte ansehen",
   secondaryCta: "Projekt anfragen",
 } as const;
@@ -205,7 +220,9 @@ export type BuiltSystem = {
   id: string;
   title: string;
   category: string;
+  problem: string;
   benefit: string;
+  systemCore: string;
   systemType: string;
   description: string;
   technology: string;
@@ -221,7 +238,11 @@ export const builtSystems: readonly BuiltSystem[] = [
     id: "shophebel",
     title: "Shophebel",
     category: "Analysewerkzeug",
+    problem:
+      "Onlineshops verlieren Umsatz, weil Schwachstellen in Vertrauen, Angebot, Nutzerführung und Technik oft unsichtbar bleiben.",
     benefit: "Umsatzpotenziale, Reibung und Vertrauenssignale im Shop klar priorisieren.",
+    systemCore:
+      "Website erfassen, Signale analysieren, Score bilden und Empfehlungen nach Wirkung priorisieren.",
     systemType: "Analyse- und Optimierungssystem für Onlineshops",
     description:
       "Shophebel prüft Onlineshops auf Vertrauen, Conversion, technische Reibung und konkrete Optimierungspotenziale.",
@@ -236,7 +257,11 @@ export const builtSystems: readonly BuiltSystem[] = [
     id: "symbolraum",
     title: "Symbolraum",
     category: "Interaktiver Wissensraum",
+    problem:
+      "Biblische Symbole, Räume, Wörter und Texte verlieren in linearen Nachschlagewerken schnell ihren Zusammenhang.",
     benefit: "Bedeutungen, Relationen und persönliche Wege als erfahrbares System öffnen.",
+    systemCore:
+      "Codex, Symbolnetz, Räume, Archiv und persönlicher Pfad verbinden Inhalte zu einer navigierbaren Bedeutungsarchitektur.",
     systemType: "Interaktiver Bedeutungsraum",
     description:
       "Symbolraum macht biblische Symbole, Räume und Texte als verbundenes Wissens- und Erfahrungsnetz zugänglich.",
@@ -248,10 +273,32 @@ export const builtSystems: readonly BuiltSystem[] = [
     externalUrl: "https://bibel-symbolraum.vercel.app/",
   },
   {
+    id: "flowbase",
+    title: "Flowbase",
+    category: "Modulares Prozesssystem",
+    problem:
+      "Operative Abläufe, Touren, Daten und Verantwortlichkeiten liegen oft verteilt und lassen sich schwer steuern.",
+    benefit: "Prozesse, Touren, Abläufe und Daten in eine klare operative Steuerung übersetzen.",
+    systemCore:
+      "Module für Ablauf, Daten, Status, Rollen und Auswertung bilden eine erweiterbare Prozessbasis.",
+    systemType: "Modulares System für Prozesse und operative Steuerung",
+    description:
+      "Flowbase ist als modulares Prozesssystem vorbereitet. Es bündelt Abläufe, Datenpunkte, Touren und operative Logik, ohne fertige Produktreife vorzutäuschen.",
+    technology: "Prozessmodell · Datenstruktur · Rollen · Dashboard",
+    status: "IN ENTWICKLUNG",
+    accent: "cyan",
+    cta: "System vorbereiten",
+    url: "/#kontakt",
+  },
+  {
     id: "custom-systems",
-    title: "Weitere Systeme",
+    title: "Custom Systems",
     category: "Individuelle Produktarchitektur",
+    problem:
+      "Viele digitale Vorhaben brauchen keine Standardsoftware, sondern eine eigene Logik aus Daten, Interface und Workflow.",
     benefit: "Eigene Prozesse, Daten und Markenlogik in belastbare digitale Werkzeuge übersetzen.",
+    systemCore:
+      "Strategie, Datenmodell, Interface, Automatisierung und Produktlogik werden als individuelles System entworfen.",
     systemType: "Individuelle digitale Produktarchitektur",
     description:
       "Maßgeschneiderte Werkzeuge für Prozesse, Analyse, Automatisierung und Markenaufbau - präzise geplant, sauber entwickelt, erweiterbar gedacht.",
@@ -320,39 +367,51 @@ export const atelierCurrentSystems = [
 
 export const architectureLayers = [
   {
-    id: "strategy",
-    layerCode: "L01",
-    layerLabel: "STRATEGIE",
-    title: "Strategie",
-    description:
-      "Ziele, Nutzer, Geschäftslogik und technische Randbedingungen werden zu einer tragfähigen Produktentscheidung verdichtet.",
-    accent: "cyan" as const,
-  },
-  {
     id: "interface",
-    layerCode: "L02",
-    layerLabel: "INTERFACE",
+    layerCode: "L01",
+    layerLabel: "Interface",
     title: "Interface",
     description:
-      "Oberflächen verbinden Nutzerführung, Vertrauen und klare Interaktionslogik - ruhig, präzise und ohne unnötige Ablenkung.",
-    accent: "gold" as const,
+      "Bedienbare Oberflächen, Dashboards und Nutzerwege übersetzen komplexe Systeme in klare Entscheidungen.",
+    components: ["Analyse-Views", "Dashboards", "Nutzerwege", "Report-Ansichten"],
+    benefit: "Macht Arbeit sichtbar und reduziert Reibung im täglichen Einsatz.",
+    reference: "Shophebel zeigt Analyseergebnisse als priorisierte Handlungskarte.",
+    accent: "cyan" as const,
   },
   {
     id: "data",
-    layerCode: "L03",
-    layerLabel: "DATENMODELL",
+    layerCode: "L02",
+    layerLabel: "Datenmodell",
     title: "Datenmodell",
     description:
-      "Strukturierte Inhalte, Relationen und Zustände machen digitale Produkte skalierbar und anschlussfähig.",
-    accent: "cyan" as const,
+      "Strukturierte Daten, Entitäten, Scores, Zustände und Beziehungen bilden das Fundament für belastbare Produktlogik.",
+    components: ["Entitäten", "Scores", "Relationen", "Zustände"],
+    benefit: "Schafft Ordnung, Anschlussfähigkeit und eine Basis für Auswertung.",
+    reference: "Symbolraum verbindet Begriffe, Texte und Bedeutungen als navigierbares Modell.",
+    accent: "gold" as const,
   },
   {
     id: "automation",
-    layerCode: "L04",
-    layerLabel: "AUTOMATISIERUNG",
-    title: "Automatisierung / KI",
+    layerCode: "L03",
+    layerLabel: "Automatisierung",
+    title: "Automatisierung",
     description:
-      "Workflows, API-Anbindungen und KI-gestützte Funktionen übernehmen echte Arbeit und bleiben in die Produktlogik eingebettet.",
+      "Workflows, Analyseprozesse, KI-Ebenen und Schnittstellen übernehmen wiederkehrende Arbeit und verdichten Signale.",
+    components: ["Workflows", "API-Anbindungen", "KI-Auswertung", "Analyse-Engines"],
+    benefit: "Beschleunigt Prozesse und macht Ergebnisse wiederholbar messbar.",
+    reference: "Flowbase und Custom Systems verbinden operative Abläufe mit sauberer Auswertung.",
+    accent: "cyan" as const,
+  },
+  {
+    id: "logic",
+    layerCode: "L04",
+    layerLabel: "Produktlogik",
+    title: "Produktlogik",
+    description:
+      "Regeln, Empfehlungen, Prioritäten, Zugriff, Billing und skalierbare Produktmechanik machen aus Funktionen ein Produkt.",
+    components: ["Regeln", "Empfehlungen", "Priorisierung", "Zugriff und Billing"],
+    benefit: "Verwandelt einzelne Funktionen in ein erweiterbares digitales System.",
+    reference: "Shophebel priorisiert Findings, Maßnahmen und Wachstumspotenziale.",
     accent: "gold" as const,
   },
 ] as const;

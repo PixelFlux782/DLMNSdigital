@@ -51,13 +51,13 @@ function OperatorFrame() {
         <div className="relative aspect-[4/5] overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.04] via-transparent to-cyan/[0.03]" />
           <div className="flex h-full flex-col items-center justify-center gap-4 p-6">
-            <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden border border-border-strong bg-background/80">
+            <div className="relative flex aspect-[3/2] w-full items-center justify-center overflow-hidden border border-border-strong bg-background/75 px-5">
               <Image
-                src={logoAssets.main.src}
-                alt={logoAssets.main.alt}
-                width={logoAssets.main.width}
-                height={logoAssets.main.height}
-                className="h-full w-full object-cover opacity-90"
+                src={logoAssets.digital.src}
+                alt={logoAssets.digital.alt}
+                width={logoAssets.digital.width}
+                height={logoAssets.digital.height}
+                className="h-auto w-full object-contain opacity-95 drop-shadow-[0_0_24px_rgba(237,247,251,0.12)]"
                 sizes="280px"
               />
             </div>

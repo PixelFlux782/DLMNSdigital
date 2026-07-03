@@ -77,7 +77,7 @@ export function SystemOverviewPage() {
                       </p>
                     </div>
                     <div className="grid gap-2 sm:grid-cols-3">
-                      {["Strategie", "Interface", "Daten"].map((node) => (
+                      {["Problem", "Kern", "Handlung"].map((node) => (
                         <span
                           key={node}
                           className="border border-border/45 bg-background/35 px-2.5 py-2 font-mono text-[9px] uppercase tracking-[0.14em] text-muted"
@@ -112,15 +112,16 @@ export function SystemOverviewPage() {
               <article
                 key={system.id}
                 className={cn(
-                  "group relative overflow-hidden border border-border/60 bg-background/35",
+                  "group relative overflow-hidden border border-border/60 bg-background/35 shadow-[0_24px_90px_rgba(0,0,0,0.22)]",
                   index === 0 && "md:ml-0",
-                  index === 1 && "md:ml-10",
-                  index === 2 && "md:ml-20",
+                  index === 1 && "md:ml-8",
+                  index === 2 && "md:ml-16",
+                  index === 3 && "md:ml-8",
                 )}
               >
                 <div className="pointer-events-none absolute inset-0 blueprint-grid opacity-[0.08]" />
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-cyan/50" />
-                <div className="relative grid gap-8 px-6 py-7 md:grid-cols-[0.92fr_1.28fr_0.8fr] md:px-8 md:py-9 lg:gap-12">
+                <div className="relative grid gap-8 px-6 py-7 md:grid-cols-[0.82fr_1.3fr_0.9fr] md:px-8 md:py-9 lg:gap-12">
                   <div>
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
@@ -138,13 +139,31 @@ export function SystemOverviewPage() {
                     </p>
                   </div>
 
-                  <div>
-                    <p className="text-lg leading-relaxed text-foreground/90">
-                      {system.benefit}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">
-                      {system.description}
-                    </p>
+                  <div className="grid gap-5">
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted/75">
+                        Problem
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted md:text-base">
+                        {system.problem}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-cyan/75">
+                        Nutzen
+                      </p>
+                      <p className="mt-2 text-base leading-relaxed text-foreground/90 md:text-lg">
+                        {system.benefit}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-gold-muted">
+                        Systemkern
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted md:text-base">
+                        {system.systemCore}
+                      </p>
+                    </div>
                   </div>
 
                   <div className="flex flex-col justify-between gap-7 md:border-l md:border-border/50 md:pl-8">
@@ -157,6 +176,9 @@ export function SystemOverviewPage() {
                       </div>
                       <p className="mt-3 font-mono text-[11px] leading-relaxed text-muted">
                         {system.technology}
+                      </p>
+                      <p className="mt-4 text-sm leading-relaxed text-muted">
+                        {system.description}
                       </p>
                     </div>
 

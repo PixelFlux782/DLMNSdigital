@@ -116,8 +116,6 @@ function ArtifactEntry({
             {system.url ? (
               <Link
                 href={system.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={cn(
                   "group inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors",
                   isGold

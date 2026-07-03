@@ -2,10 +2,108 @@ import Link from "next/link";
 import { ArrowUpRight, ChevronLeft } from "lucide-react";
 import { type SystemDetail } from "@/lib/systems";
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 
 type SystemDetailPageProps = {
   detail: SystemDetail;
 };
+
+function SystemPreview({ detail }: SystemDetailPageProps) {
+  const isDashboard = detail.visualVariant === "dashboard";
+
+  return (
+    <div className="relative overflow-hidden border border-border/60 bg-background/40 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
+      <div className="pointer-events-none absolute inset-0 blueprint-grid opacity-[0.08]" />
+      <div className="relative">
+        <div className="flex items-center justify-between border-b border-border/50 pb-4">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+            {isDashboard ? "Analyse-Konsole" : "Bedeutungsraum"}
+          </p>
+          <span className="h-2 w-2 bg-cyan" aria-hidden="true" />
+        </div>
+
+        {isDashboard ? (
+          <div className="mt-6 grid gap-4">
+            <div className="grid gap-3 sm:grid-cols-[1fr_7rem]">
+              <div className="border border-cyan/20 bg-cyan/[0.045] p-4">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-cyan-light/80">
+                  Shop Score
+                </p>
+                <p className="mt-3 font-display text-5xl font-semibold text-foreground">
+                  74
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted">
+                  Starke Basis, aber klare Hebel in Vertrauen und Führung.
+                </p>
+              </div>
+              <div className="grid gap-2">
+                {["Trust", "CTA", "Tech"].map((item, index) => (
+                  <div key={item} className="border border-border/50 bg-surface/35 p-3">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-muted">
+                      {item}
+                    </p>
+                    <div className="mt-3 h-1.5 bg-border/60">
+                      <div
+                        className="h-full bg-cyan"
+                        style={{ width: `${[68, 82, 56][index]}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-2">
+              {["Checkout-Vertrauen stärken", "Angebot früher schärfen", "Mobile Reibung reduzieren"].map(
+                (finding, index) => (
+                  <div
+                    key={finding}
+                    className="flex items-center justify-between gap-4 border border-border/45 bg-surface/25 px-3 py-2.5"
+                  >
+                    <span className="text-xs text-foreground/85">{finding}</span>
+                    <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-gold-muted">
+                      P{index + 1}
+                    </span>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="mt-6">
+            <div className="relative min-h-72 border border-border/50 bg-surface/20 p-5">
+              <div className="absolute left-1/2 top-1/2 h-px w-[72%] -translate-x-1/2 bg-cyan/20" />
+              <div className="absolute left-1/2 top-1/2 h-[66%] w-px -translate-y-1/2 bg-cyan/20" />
+              {[
+                ["Codex", "left-6 top-7"],
+                ["Symbolnetz", "right-6 top-16"],
+                ["Räume", "left-10 bottom-10"],
+                ["Pfad", "right-10 bottom-8"],
+                ["Text", "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"],
+              ].map(([label, position]) => (
+                <div
+                  key={label}
+                  className={cn(
+                    "absolute border border-cyan/25 bg-background/80 px-3 py-2 shadow-[0_0_28px_rgba(84,200,232,0.08)]",
+                    position,
+                  )}
+                >
+                  <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-cyan-light">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs leading-relaxed text-muted">
+              Inhalte werden nicht linear abgelegt, sondern über Beziehungen,
+              Räume und wieder auffindbare Pfade erschlossen.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export function SystemDetailPage({ detail }: SystemDetailPageProps) {
   return (
@@ -21,7 +119,7 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
             Zurück zur Systemübersicht
           </Link>
 
-          <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_22rem] lg:items-end">
+          <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_24rem] lg:items-end">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-gold-muted">
                 {detail.hero.eyebrow}
@@ -34,18 +132,17 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button href="/#kontakt" size="lg">
+                <Button
+                  href={detail.externalUrl ?? "/#kontakt"}
+                  size="lg"
+                  target={detail.externalUrl ? "_blank" : undefined}
+                  rel={detail.externalUrl ? "noopener noreferrer" : undefined}
+                >
                   {detail.hero.primaryCta}
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
-                {detail.externalUrl && detail.hero.secondaryCta && (
-                  <Button
-                    href={detail.externalUrl}
-                    variant="secondary"
-                    size="lg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                {detail.hero.secondaryCta && (
+                  <Button href="/#kontakt" variant="secondary" size="lg">
                     {detail.hero.secondaryCta}
                     <ArrowUpRight className="h-4 w-4" />
                   </Button>
@@ -88,6 +185,59 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
               </dl>
             </aside>
           </div>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {detail.metrics.map((metric) => (
+              <div key={metric.label} className="border border-border/50 bg-surface/25 p-4">
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+                  {metric.label}
+                </p>
+                <p className="mt-2 font-display text-2xl font-semibold text-foreground">
+                  {metric.value}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-muted">
+                  {metric.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border/60 py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-muted">
+              Systemlogik
+            </p>
+            <h2 className="mt-4 max-w-xl font-display text-3xl font-semibold text-foreground md:text-4xl">
+              {detail.id === "shophebel"
+                ? "Von der Website zur priorisierten Handlung."
+                : "Von Inhalten zu einem erfahrbaren Bedeutungsraum."}
+            </h2>
+            <div className="mt-8 grid gap-3">
+              {detail.logicSteps.map((step, index) => (
+                <div
+                  key={step.label}
+                  className="grid gap-3 border-l border-cyan/35 bg-surface/20 px-4 py-3 sm:grid-cols-[4rem_1fr]"
+                >
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-cyan/80">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-foreground">
+                      {step.label}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted">
+                      {step.detail}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <SystemPreview detail={detail} />
         </div>
       </section>
 
@@ -130,8 +280,54 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
         </div>
       </section>
 
+      <section className="border-y border-border/60 bg-surface/20 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="grid gap-8 md:grid-cols-[18rem_1fr]">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold-muted">
+                {detail.id === "shophebel" ? "Analysebereiche" : "Nutzen"}
+              </p>
+              <h2 className="mt-4 font-display text-2xl font-semibold text-foreground md:text-3xl">
+                {detail.id === "shophebel"
+                  ? "Die Bewertung trennt Signale, bevor sie priorisiert werden."
+                  : "Der Raum macht Zusammenhänge erfahrbar, ohne sie zu überladen."}
+              </h2>
+            </div>
+            <div className="grid gap-px overflow-hidden border border-border/60 sm:grid-cols-2 lg:grid-cols-3">
+              {detail.focusAreas.map((area) => (
+                <div key={area} className="bg-background/45 p-5">
+                  <p className="font-display text-lg font-semibold text-foreground">
+                    {area}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {detail.resultItems && (
+            <div className="mt-12 grid gap-8 border-t border-border/60 pt-10 md:grid-cols-[18rem_1fr]">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan/75">
+                  {detail.id === "shophebel" ? "Ergebnislogik" : "Wirkung"}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {detail.resultItems.map((item) => (
+                  <span
+                    key={item}
+                    className="border border-cyan/20 bg-cyan/[0.035] px-3 py-2 font-mono text-[10px] uppercase tracking-[0.14em] text-cyan-light/85"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       {detail.suitableFor && (
-        <section className="border-y border-border/60 bg-surface/20 py-16 md:py-20">
+        <section className="py-16 md:py-20">
           <div className="mx-auto max-w-6xl px-5 sm:px-8">
             <div className="grid gap-8 md:grid-cols-[18rem_1fr]">
               <div>
@@ -139,7 +335,7 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
                   Für wen geeignet
                 </p>
                 <h2 className="mt-4 font-display text-2xl font-semibold text-foreground md:text-3xl">
-                  Besonders sinnvoll, wenn Analyse in klare Entscheidung führen soll.
+                  {detail.suitableForTitle}
                 </h2>
               </div>
               <div className="grid gap-px overflow-hidden border border-border/60 md:grid-cols-2">

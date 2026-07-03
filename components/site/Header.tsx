@@ -41,15 +41,16 @@ export function Header() {
           className="group flex items-center gap-3"
           onClick={() => setIsOpen(false)}
         >
-          <span className="flex h-9 w-[8.7rem] items-center justify-center overflow-hidden border border-border/70 bg-black/75 px-3 shadow-[inset_0_1px_0_rgba(237,247,251,0.06)] transition-colors group-hover:border-cyan/30 sm:h-10 sm:w-[9.8rem]">
+          <span className="flex h-10 w-[9.4rem] items-center justify-center overflow-hidden px-1.5 transition-opacity group-hover:opacity-90 sm:h-11 sm:w-[10.8rem]">
             <Image
               src={logoAssets.digital.src}
               alt={logoAssets.digital.alt}
               width={logoAssets.digital.width}
               height={logoAssets.digital.height}
-              priority
-              className="h-auto w-full object-contain"
-              sizes="(max-width: 640px) 139px, 157px"
+              loading="eager"
+              fetchPriority="high"
+              className="h-auto w-full object-contain drop-shadow-[0_0_18px_rgba(237,247,251,0.14)]"
+              sizes="(max-width: 640px) 150px, 173px"
             />
           </span>
           <span className="hidden max-w-[10rem] border-l border-border/60 pl-3 text-[11px] leading-snug text-muted lg:block">

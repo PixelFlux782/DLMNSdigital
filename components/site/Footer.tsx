@@ -16,14 +16,14 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start lg:gap-16">
           <div className="max-w-md">
             <Link href="/" className="inline-flex">
-              <span className="flex h-11 w-[10.5rem] items-center justify-center overflow-hidden border border-border/70 bg-black/75 px-3.5 shadow-[inset_0_1px_0_rgba(237,247,251,0.06)]">
+              <span className="flex h-14 w-[13rem] items-center justify-center overflow-hidden">
                 <Image
                   src={logoAssets.digital.src}
                   alt={logoAssets.digital.alt}
                   width={logoAssets.digital.width}
                   height={logoAssets.digital.height}
-                  className="h-auto w-full object-contain opacity-95"
-                  sizes="168px"
+                  className="h-auto w-full object-contain opacity-95 drop-shadow-[0_0_22px_rgba(237,247,251,0.12)]"
+                  sizes="208px"
                 />
               </span>
             </Link>
