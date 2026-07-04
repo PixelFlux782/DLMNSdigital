@@ -18,22 +18,28 @@ export const siteConfig = {
 
 export const logoAssets = {
   digital: {
-    src: "/Logo-tranparent.png",
+    src: "/dlmns-digital-wordmark-v2.png",
     alt: "DLMNS Digital - Building Intelligent Digital Systems",
-    width: 1774,
-    height: 887,
+    width: 3400,
+    height: 720,
+  },
+  digitalIcon: {
+    src: "/dlmns-digital-icon-v2.png",
+    alt: "DLMNS Digital",
+    width: 1400,
+    height: 1400,
   },
   digitalOpaque: {
-    src: "/DLMNSdigital-logo.png",
+    src: "/dlmns-digital-wordmark-v2.png",
     alt: "DLMNS Digital - Building Intelligent Digital Systems",
-    width: 1774,
-    height: 887,
+    width: 3400,
+    height: 720,
   },
   main: {
-    src: "/DLMNSmainlogo.png",
-    alt: "DLMNS",
-    width: 1536,
-    height: 1024,
+    src: "/dlmns-digital-icon-v2.png",
+    alt: "DLMNS Digital",
+    width: 1400,
+    height: 1400,
   },
 } as const;
 

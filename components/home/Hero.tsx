@@ -182,13 +182,13 @@ export function Hero() {
                   aria-hidden="true"
                 />
                 <Image
-                  src={logoAssets.digital.src}
+                  src={logoAssets.digitalIcon.src}
                   alt=""
-                  width={logoAssets.digital.width}
-                  height={logoAssets.digital.height}
+                  width={logoAssets.digitalIcon.width}
+                  height={logoAssets.digitalIcon.height}
                   aria-hidden="true"
                   sizes="360px"
-                  className="pointer-events-none absolute -right-20 top-7 w-[22rem] opacity-[0.055] grayscale sm:-right-12 sm:w-[25rem]"
+                  className="pointer-events-none absolute -right-20 top-8 w-[22rem] opacity-[0.12] grayscale drop-shadow-[0_0_32px_rgba(125,215,238,0.12)] sm:-right-12 sm:w-[25rem]"
                 />
                 <div
                   className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/45 to-transparent"

@@ -41,7 +41,7 @@ export function Header() {
           className="group flex items-center gap-3"
           onClick={() => setIsOpen(false)}
         >
-          <span className="flex h-10 w-[9.4rem] items-center justify-center overflow-hidden px-1.5 transition-opacity group-hover:opacity-90 sm:h-11 sm:w-[10.8rem]">
+          <span className="flex h-12 w-[12.5rem] items-center justify-center overflow-hidden border border-border/55 bg-background/70 px-3 shadow-[0_0_28px_rgba(125,215,238,0.1)] transition-opacity group-hover:opacity-95 sm:h-14 sm:w-[15rem]">
             <Image
               src={logoAssets.digital.src}
               alt={logoAssets.digital.alt}
@@ -49,8 +49,8 @@ export function Header() {
               height={logoAssets.digital.height}
               loading="eager"
               fetchPriority="high"
-              className="h-auto w-full object-contain drop-shadow-[0_0_18px_rgba(237,247,251,0.14)]"
-              sizes="(max-width: 640px) 150px, 173px"
+              className="h-auto w-full object-contain opacity-100 brightness-125 drop-shadow-[0_0_20px_rgba(237,247,251,0.24)]"
+              sizes="(max-width: 640px) 200px, 240px"
             />
           </span>
           <span className="hidden max-w-[10rem] border-l border-border/60 pl-3 text-[11px] leading-snug text-muted lg:block">
