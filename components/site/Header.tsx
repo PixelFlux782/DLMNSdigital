@@ -38,10 +38,14 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8">
         <Link
           href="/"
-          className="group flex items-center gap-3"
+          className="group flex min-w-0 items-center gap-3.5"
           onClick={() => setIsOpen(false)}
         >
-          <span className="flex h-12 w-[12.5rem] items-center justify-center overflow-hidden border border-border/55 bg-background/70 px-3 shadow-[0_0_28px_rgba(125,215,238,0.1)] transition-opacity group-hover:opacity-95 sm:h-14 sm:w-[15rem]">
+          <span className="relative flex h-11 w-[10.75rem] shrink-0 items-center overflow-hidden border border-border/45 bg-surface/28 px-3 shadow-[0_16px_46px_rgba(0,0,0,0.26)] backdrop-blur-md transition-colors duration-300 group-hover:border-cyan/28 sm:h-12 sm:w-[13.5rem] sm:px-3.5">
+            <span
+              className="pointer-events-none absolute inset-x-2 top-0 h-px bg-gradient-to-r from-transparent via-cyan/38 to-transparent"
+              aria-hidden="true"
+            />
             <Image
               src={logoAssets.digital.src}
               alt={logoAssets.digital.alt}
@@ -49,12 +53,12 @@ export function Header() {
               height={logoAssets.digital.height}
               loading="eager"
               fetchPriority="high"
-              className="h-auto w-full object-contain opacity-100 brightness-125 drop-shadow-[0_0_20px_rgba(237,247,251,0.24)]"
-              sizes="(max-width: 640px) 200px, 240px"
+              className="h-auto w-full object-contain opacity-95 mix-blend-screen brightness-125 drop-shadow-[0_0_16px_rgba(237,247,251,0.18)] transition-opacity duration-300 group-hover:opacity-100"
+              sizes="(max-width: 640px) 172px, 216px"
             />
           </span>
-          <span className="hidden max-w-[10rem] border-l border-border/60 pl-3 text-[11px] leading-snug text-muted lg:block">
-            Digitalstudio von DALEMANS
+          <span className="hidden max-w-[11rem] border-l border-border/55 pl-3 text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-muted/90 lg:block">
+            Digitale Systeme von DLMNS
           </span>
         </Link>
 

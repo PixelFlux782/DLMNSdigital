@@ -18,7 +18,7 @@ export const siteConfig = {
 
 export const logoAssets = {
   digital: {
-    src: "/dlmns-digital-wordmark-v2.png",
+    src: "/dlmns-digital-wordmark-transparent.png",
     alt: "DLMNS Digital - Building Intelligent Digital Systems",
     width: 3400,
     height: 720,
@@ -53,10 +53,10 @@ export const backgroundAssets = {
 } as const;
 
 export const heroCopy = {
-  eyebrow: "DLMNS Digital · Digitalstudio von DALEMANS",
+  eyebrow: "Digitale Systeme von DLMNS",
   headline: "Digitale Produktsysteme für Analyse, Prozesse und Wachstum.",
   subline:
-    "DLMNS baut digitale Produkte, Analysewerkzeuge und Automatisierungssysteme, die Arbeit sichtbar, steuerbar und skalierbar machen.",
+    "DLMNS Digital baut Webprodukte, Analysewerkzeuge und Automatisierungssysteme, die echte Arbeit sichtbar, steuerbar und skalierbar machen.",
   primaryCta: "Systeme ansehen",
   secondaryCta: "Projekt anfragen",
 } as const;

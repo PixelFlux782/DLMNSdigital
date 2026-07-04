@@ -46,7 +46,7 @@ const proofSignals = [
 ] as const;
 
 const heroTrustSignals = [
-  { label: "Wer", value: "Digitalstudio von DALEMANS" },
+  { label: "Bereich", value: "Digitaler Produktbereich der DLMNS Gruppe" },
   { label: "Baut", value: "Webprodukte, Analyse und Automatisierung" },
   { label: "Live", value: "Shophebel im MVP-Betrieb" },
 ] as const;
@@ -96,7 +96,7 @@ export function Hero() {
       <div className="relative mx-auto grid min-h-[calc(100svh-7rem)] max-w-6xl items-center gap-12 px-5 sm:px-8 md:min-h-[calc(100svh-9rem)] lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 xl:gap-20">
         <div className="relative z-10">
           <motion.p
-            className="mb-5 max-w-[19rem] font-mono text-[11px] uppercase leading-relaxed tracking-[0.26em] text-gold-light/80 sm:max-w-none"
+            className="mb-5 max-w-[19rem] font-mono text-[11px] uppercase leading-relaxed tracking-[0.2em] text-gold-light/80 sm:max-w-none"
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
