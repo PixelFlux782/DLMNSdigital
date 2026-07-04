@@ -45,6 +45,12 @@ const proofSignals = [
   "Skalierbare Websysteme",
 ] as const;
 
+const heroTrustSignals = [
+  { label: "Wer", value: "Digitalstudio von DALEMANS" },
+  { label: "Baut", value: "Webprodukte, Analyse und Automatisierung" },
+  { label: "Live", value: "Shophebel im MVP-Betrieb" },
+] as const;
+
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -130,6 +136,24 @@ export function Hero() {
               {heroCopy.secondaryCta}
               <ArrowUpRight className="h-4 w-4" />
             </Button>
+          </motion.div>
+
+          <motion.div
+            className="mt-8 grid gap-2 border-y border-border/45 py-4 sm:grid-cols-3"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {heroTrustSignals.map((signal) => (
+              <div key={signal.label} className="min-w-0">
+                <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-cyan/75">
+                  {signal.label}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-foreground/86">
+                  {signal.value}
+                </p>
+              </div>
+            ))}
           </motion.div>
         </div>
 

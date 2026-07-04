@@ -30,6 +30,17 @@ export function SystemOverviewPage() {
               </p>
             </div>
 
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button href="/systeme/shophebel" size="lg">
+                Shophebel verstehen
+                <ArrowUpRight className="h-4 w-4" />
+              </Button>
+              <Button href="/#kontakt" variant="secondary" size="lg">
+                Systemprojekt anfragen
+                <ArrowUpRight className="h-4 w-4" />
+              </Button>
+            </div>
+
             <div className="mt-10 grid gap-3 border-y border-border/60 py-5 sm:grid-cols-3">
               {["Eigene Produkte", "Analysewerkzeuge", "Individuelle Systeme"].map(
                 (item) => (

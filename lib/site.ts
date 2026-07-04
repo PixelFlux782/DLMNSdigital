@@ -51,7 +51,7 @@ export const heroCopy = {
   headline: "Digitale Produktsysteme für Analyse, Prozesse und Wachstum.",
   subline:
     "DLMNS baut digitale Produkte, Analysewerkzeuge und Automatisierungssysteme, die Arbeit sichtbar, steuerbar und skalierbar machen.",
-  primaryCta: "Digitale Produkte ansehen",
+  primaryCta: "Systeme ansehen",
   secondaryCta: "Projekt anfragen",
 } as const;
 
@@ -131,14 +131,14 @@ export const coreExperienceCopy = {
   eyebrow: "Prozess",
   title: "Von Komplexität zu belastbarer Produktlogik",
   description:
-    "Ein ruhiger Systemprozess für Strategie, Design, Entwicklung, Analyse und Automatisierung.",
+    "So führt DLMNS vom ersten Signal zur nutzbaren Oberfläche: Strategie, Design, Entwicklung, Analyse und Automatisierung greifen als ein System ineinander.",
 } as const;
 
 export const systemThinkingCopy = {
   eyebrow: "Systemdenken",
   title: "Digitale Systeme statt isolierter Oberflächen",
   description:
-    "DLMNS verbindet Strategie, Design und Entwicklung zu belastbaren digitalen Systemen mit klarer Logik.",
+    "DLMNS baut nicht nur Websites, sondern Werkzeuge mit klarer Logik: Interface, Datenmodell, Workflow und Handlung gehören zusammen.",
 } as const;
 
 export type SystemFlowStep = {
@@ -182,7 +182,7 @@ export const systemCaseStudies: readonly SystemCaseStudy[] = [
       "KI-Ebene",
     ],
     outcome:
-      "Onlineshop-Komplexität wird zu einer klaren Handlungskarte für Conversion, Vertrauen und technische Qualität.",
+      "Onlineshop-Komplexität wird zu einer klaren Handlungskarte für Conversion, Vertrauen, Technik und die nächsten Optimierungsschritte.",
   },
   {
     projectId: "symbolraum",
@@ -198,7 +198,7 @@ export const systemCaseStudies: readonly SystemCaseStudy[] = [
       "Interaktionsebene",
     ],
     outcome:
-      "Komplexe Bedeutungsräume werden als navigierbare digitale Erfahrung zugänglich.",
+      "Komplexe Inhalte werden als navigierbare digitale Erfahrung zugänglich: geordnet, ruhig geführt und erweiterbar.",
   },
 ] as const;
 
@@ -446,20 +446,20 @@ export const developerProfile = {
   role: atelierContent.roles.join(", "),
   bio: atelierContent.bio,
   trustFacts: [
+    "Eigene Produkte in Live-Betrieb und aktiver Entwicklung",
     "Digitale Produktarchitektur von der Struktur bis zum Interface",
     "KI-Workflows mit echter Produktlogik statt isolierter Automatisierung",
     "Interaktive Erfahrungen als navigierbare Systeme",
-    "Komplexität wird in klare Handlung und messbare Qualität übersetzt",
   ],
 } as const;
 
 export const ctaCopy = {
   eyebrow: "Kontakt",
-  title: "Aus einer Idee wird ein belastbares digitales System.",
+  title: "Aus einem konkreten Bedarf wird ein belastbares digitales System.",
   description:
-    "Bringen Sie eine Produktidee, einen Prozess, eine Marke oder eine bestehende digitale Oberfläche mit. DLMNS übersetzt sie in Struktur, Interface, Intelligenz und Handlung.",
+    "Bringen Sie eine Produktidee, einen Prozess, einen Shop oder eine bestehende digitale Oberfläche mit. DLMNS prüft, welche Struktur, welches Interface und welche Automatisierung daraus sinnvoll entstehen.",
   primaryCta: "Projekt anfragen",
-  secondaryCta: "Ersten Blick anfordern",
+  secondaryCta: "Erste Einschätzung anfordern",
   flowMeta: [
     { key: "EINGABE", value: "KOMPLEXITÄT" },
     { key: "PROZESS", value: "STRUKTUR" },

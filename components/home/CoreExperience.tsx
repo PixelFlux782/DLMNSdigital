@@ -451,7 +451,7 @@ export function CoreExperience() {
       </div>
 
       <div
-        className={cn("h-[300vh]", prefersReducedMotion && "hidden")}
+        className={cn("h-[190vh]", prefersReducedMotion && "hidden")}
         aria-hidden="true"
       />
     </section>

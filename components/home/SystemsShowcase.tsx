@@ -205,24 +205,33 @@ function SystemCaseStudyBlock({
             </div>
           </div>
 
-          <div className="mt-10 flex items-center justify-between border-t border-border/50 pt-6">
+          <div className="mt-10 flex flex-col gap-4 border-t border-border/50 pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/70">
               Systemstatus / {study.statusLabel}
             </p>
-            <Link
-              href={study.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "group inline-flex items-center gap-2 text-sm font-medium transition-colors",
-                isGold
-                  ? "text-gold hover:text-gold-light"
-                  : "text-cyan hover:text-cyan-light",
-              )}
-            >
-              System live ansehen
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
+            <div className="flex flex-col gap-2 sm:items-end">
+              <Link
+                href={`/systeme/${study.projectId}`}
+                className={cn(
+                  "group inline-flex items-center gap-2 text-sm font-medium transition-colors",
+                  isGold
+                    ? "text-gold hover:text-gold-light"
+                    : "text-cyan hover:text-cyan-light",
+                )}
+              >
+                Detailseite ansehen
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href={study.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              >
+                System live ansehen
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

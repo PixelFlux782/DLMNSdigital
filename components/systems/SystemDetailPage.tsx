@@ -148,6 +148,23 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
                   </Button>
                 )}
               </div>
+
+              <div className="mt-8 grid gap-3 border-y border-border/50 py-4 sm:grid-cols-3">
+                {[
+                  ["Produkt", detail.name],
+                  ["Status", detail.status],
+                  ["Nächster Schritt", detail.hero.secondaryCta ? "Ansehen oder anfragen" : "Gespräch anfragen"],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-cyan/75">
+                      {label}
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-foreground/86">
+                      {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <aside className="border border-border/60 bg-background/35 p-6">
@@ -361,12 +378,14 @@ export function SystemDetailPage({ detail }: SystemDetailPageProps) {
             <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 className="max-w-2xl font-display text-3xl font-semibold text-foreground md:text-4xl">
-                  Ein digitales System beginnt mit einer präzisen Frage.
+                  {detail.id === "shophebel"
+                    ? "Shop prüfen oder ein ähnliches Analysesystem planen."
+                    : "Symbolraum ansehen oder ein ähnliches Wissenssystem planen."}
                 </h2>
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-                  DLMNS kann ein bestehendes Produkt schärfen, ein neues System
-                  konzipieren oder eine erste belastbare Produktarchitektur
-                  entwickeln.
+                  DLMNS kann das bestehende Produkt schärfen, eine verwandte
+                  Produktarchitektur entwickeln oder aus einem komplexen Inhalt ein
+                  nutzbares digitales System machen.
                 </p>
               </div>
               <Button href="/#kontakt" size="lg">

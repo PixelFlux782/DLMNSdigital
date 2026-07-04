@@ -138,7 +138,7 @@ const PHASES = [
     id: "products",
     code: "P04",
     label: "Produktwelt",
-    detail: "Shophebel / Flowbase",
+    detail: "Shophebel / Symbolraum",
     finalX: 88,
     finalY: 85,
     chaosX: 78,
@@ -1090,7 +1090,7 @@ export function TheCore() {
 
       <div
         className={cn(
-          isMobile ? "h-[270vh]" : "h-[400vh]",
+          isMobile ? "h-[190vh]" : "h-[280vh]",
           prefersReducedMotion && "hidden",
         )}
         aria-hidden="true"

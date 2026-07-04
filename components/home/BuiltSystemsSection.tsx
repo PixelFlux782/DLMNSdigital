@@ -101,6 +101,13 @@ function ArtifactEntry({
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted md:text-base">
               {system.description}
             </p>
+
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/88">
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-cyan/75">
+                Nutzen /{" "}
+              </span>
+              {system.benefit}
+            </p>
           </div>
 
           <div className="flex shrink-0 flex-col gap-4 md:w-56 md:items-end md:text-right">
@@ -114,18 +121,31 @@ function ArtifactEntry({
             </div>
 
             {system.url ? (
-              <Link
-                href={system.url}
-                className={cn(
-                  "group inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors",
-                  isGold
-                    ? "text-gold hover:text-gold-light"
-                    : "text-cyan hover:text-cyan-light",
+              <div className="flex flex-col gap-2 md:items-end">
+                <Link
+                  href={system.url}
+                  className={cn(
+                    "group inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors",
+                    isGold
+                      ? "text-gold hover:text-gold-light"
+                      : "text-cyan hover:text-cyan-light",
+                  )}
+                >
+                  {system.cta}
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
+                {system.externalUrl && (
+                  <Link
+                    href={system.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
+                  >
+                    Live ansehen
+                    <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </Link>
                 )}
-              >
-                {system.cta}
-                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </Link>
+              </div>
             ) : (
               <Link
                 href="#kontakt"
