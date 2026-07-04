@@ -20,7 +20,7 @@ const NODE_COUNT = 28;
 
 function seededRandom(seed: number) {
   const x = Math.sin(seed * 127.1 + seed * 311.7) * 43758.5453;
-  return x - Math.floor(x);
+  return Number((x - Math.floor(x)).toFixed(6));
 }
 
 type NodeState = {

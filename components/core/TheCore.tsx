@@ -16,7 +16,11 @@ import { cn } from "@/lib/utils";
 
 function seededRandom(seed: number) {
   const x = Math.sin(seed * 127.1 + seed * 311.7) * 43758.5453;
-  return x - Math.floor(x);
+  return Number((x - Math.floor(x)).toFixed(6));
+}
+
+function round(value: number) {
+  return Number(value.toFixed(4));
 }
 
 function lerp(a: number, b: number, t: number) {
@@ -32,23 +36,25 @@ function smoothstep(t: number) {
   return x * x * (3 - 2 * x);
 }
 
-/** Phases with readable holds; experience gets the longest plateau. */
+/** Five quiet transformation phases with readable holds. */
 function phaseBlend(scroll: number, index: number) {
   const thresholds = [
-    { start: 0, end: 0.24 },
-    { start: 0.24, end: 0.48 },
-    { start: 0.48, end: 0.7 },
-    { start: 0.7, end: 0.82 },
+    { start: 0, end: 0.16 },
+    { start: 0.16, end: 0.34 },
+    { start: 0.34, end: 0.56 },
+    { start: 0.56, end: 0.76 },
+    { start: 0.76, end: 0.92 },
   ];
   const { start, end } = thresholds[index];
   return smoothstep((scroll - start) / (end - start));
 }
 
 function activePhase(scroll: number) {
-  if (scroll < 0.24) return 0;
-  if (scroll < 0.48) return 1;
-  if (scroll < 0.7) return 2;
-  return 3;
+  if (scroll < 0.18) return 0;
+  if (scroll < 0.38) return 1;
+  if (scroll < 0.58) return 2;
+  if (scroll < 0.8) return 3;
+  return 4;
 }
 
 function useIsMobile() {
@@ -67,14 +73,17 @@ function useIsMobile() {
 
 /* ─── geometry ────────────────────────────────────────────── */
 
-const HEX_OUTER_R = 24;
-const HEX_MID_R = 17;
-const HEX_INNER_R = 11;
+const HEX_OUTER_R = 26;
+const HEX_MID_R = 18;
+const HEX_INNER_R = 9;
 
 function hexPoints(cx: number, cy: number, r: number, rotation = -Math.PI / 2) {
   return Array.from({ length: 6 }, (_, i) => {
     const angle = rotation + (i / 6) * Math.PI * 2;
-    return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
+    return {
+      x: round(cx + Math.cos(angle) * r),
+      y: round(cy + Math.sin(angle) * r),
+    };
   });
 }
 
@@ -91,47 +100,85 @@ function hexPointString(
 
 /* ─── data ────────────────────────────────────────────────── */
 
-const COORDINATES = [
+const PHASES = [
   {
     id: "complexity",
-    code: "C01",
-    label: "KOMPLEXITÄT",
+    code: "P01",
+    label: "Komplexität",
+    detail: "Signale / Prozesse / Daten",
     finalX: 12,
-    finalY: 14,
+    finalY: 15,
     chaosX: 22,
     chaosY: 38,
-    tone: "gold" as const,
+    tone: "cyan" as const,
   },
   {
-    id: "structure",
-    code: "S02",
-    label: "STRUKTUR",
+    id: "analysis",
+    code: "P02",
+    label: "Analyse",
+    detail: "Muster erkennen",
     finalX: 88,
-    finalY: 14,
+    finalY: 15,
     chaosX: 74,
     chaosY: 42,
     tone: "cyan" as const,
   },
   {
-    id: "orientation",
-    code: "O03",
-    label: "ORIENTIERUNG",
+    id: "modules",
+    code: "P03",
+    label: "Systemmodule",
+    detail: "Layer bilden",
     finalX: 12,
-    finalY: 86,
+    finalY: 85,
     chaosX: 28,
     chaosY: 68,
+    tone: "gold" as const,
+  },
+  {
+    id: "products",
+    code: "P04",
+    label: "Produktwelt",
+    detail: "Shophebel / Flowbase",
+    finalX: 88,
+    finalY: 85,
+    chaosX: 78,
+    chaosY: 62,
     tone: "cyan" as const,
   },
   {
-    id: "experience",
-    code: "E04",
-    label: "SYSTEM",
-    finalX: 88,
-    finalY: 86,
-    chaosX: 78,
-    chaosY: 62,
+    id: "system",
+    code: "P05",
+    label: "DLMNS-System",
+    detail: "Building Intelligent Systems",
+    finalX: 50,
+    finalY: 8,
+    chaosX: 50,
+    chaosY: 52,
     tone: "gold" as const,
   },
+];
+
+const SYSTEM_LAYERS = [
+  { label: "Interface", x: 50, y: 33, w: 27, tone: "cyan" as const },
+  { label: "Datenmodell", x: 50, y: 43, w: 32, tone: "gold" as const },
+  { label: "Automatisierung", x: 50, y: 53, w: 36, tone: "cyan" as const },
+  { label: "Produktlogik", x: 50, y: 63, w: 32, tone: "gold" as const },
+];
+
+const PRODUCTS = [
+  { label: "Shophebel", x: 25, y: 31, tone: "gold" as const },
+  { label: "Symbolraum", x: 75, y: 31, tone: "cyan" as const },
+  { label: "Flowbase", x: 25, y: 72, tone: "cyan" as const },
+  { label: "Custom Systems", x: 75, y: 72, tone: "gold" as const },
+];
+
+const SIGNAL_LABELS = [
+  { label: "Analyse", x: 20, y: 49 },
+  { label: "Score", x: 33, y: 22 },
+  { label: "Workflow", x: 67, y: 24 },
+  { label: "KI-Auswertung", x: 79, y: 50 },
+  { label: "Dashboard", x: 35, y: 80 },
+  { label: "Empfehlung", x: 63, y: 78 },
 ];
 
 type Particle = {
@@ -162,8 +209,8 @@ function buildParticles(count: number): Particle[] {
       id: i,
       chaosX: 8 + seededRandom(i * 3.7) * 84,
       chaosY: 8 + seededRandom(i * 9.1) * 84,
-      structX: 50 + Math.cos(angle) * structRadius,
-      structY: 50 + Math.sin(angle) * structRadius,
+      structX: 50 + Math.cos(angle) * structRadius * 0.85,
+      structY: 50 + Math.sin(angle) * structRadius * 0.72,
       finalX: i < ringSlots.length + midSlots.length ? slot.x : 50 + Math.cos(angle) * finalRadius,
       finalY: i < ringSlots.length + midSlots.length ? slot.y : 50 + Math.sin(angle) * finalRadius,
       size: 0.22 + seededRandom(i * 11.3) * 0.38,
@@ -172,8 +219,8 @@ function buildParticles(count: number): Particle[] {
   });
 }
 
-const PARTICLES_DESKTOP = buildParticles(48);
-const PARTICLES_MOBILE = buildParticles(20);
+const PARTICLES_DESKTOP = buildParticles(54);
+const PARTICLES_MOBILE = buildParticles(24);
 
 type StructuralNode = {
   id: number;
@@ -205,7 +252,7 @@ function buildStructuralNodes(count: number): StructuralNode[] {
   });
 }
 
-const NODES_DESKTOP = buildStructuralNodes(6);
+const NODES_DESKTOP = buildStructuralNodes(8);
 const NODES_MOBILE = buildStructuralNodes(6);
 
 function buildWeakEdges(particles: Particle[]) {
@@ -234,6 +281,9 @@ const FRAGMENTS = Array.from({ length: 10 }, (_, i) => ({
   finalY2: 50 + Math.sin((i / 10) * Math.PI * 2 + 0.28) * HEX_OUTER_R,
 }));
 
+const WEAK_EDGES_DESKTOP = buildWeakEdges(PARTICLES_DESKTOP);
+const WEAK_EDGES_MOBILE = buildWeakEdges(PARTICLES_MOBILE).slice(0, 5);
+
 const toneColor = {
   gold: "var(--color-gold)",
   cyan: "var(--color-cyan)",
@@ -257,11 +307,12 @@ function CoreCanvas({
 }) {
   const particles = isMobile ? PARTICLES_MOBILE : PARTICLES_DESKTOP;
   const structuralNodes = isMobile ? NODES_MOBILE : NODES_DESKTOP;
-  const weakEdges = isMobile ? [] : buildWeakEdges(particles);
+  const weakEdges = isMobile ? WEAK_EDGES_MOBILE : WEAK_EDGES_DESKTOP;
 
-  const pStruct = phaseBlend(scrollProgress, 1);
-  const pOrient = phaseBlend(scrollProgress, 2);
-  const pExperience = phaseBlend(scrollProgress, 3);
+  const pAnalysis = phaseBlend(scrollProgress, 1);
+  const pModules = phaseBlend(scrollProgress, 2);
+  const pProducts = phaseBlend(scrollProgress, 3);
+  const pSystem = phaseBlend(scrollProgress, 4);
   const current = activePhase(scrollProgress);
 
   const parallax = (factor: number) => ({
@@ -269,23 +320,43 @@ function CoreCanvas({
   });
 
   const particlePos = (p: Particle) => {
+    const layer = SYSTEM_LAYERS[p.id % SYSTEM_LAYERS.length];
+    const product = PRODUCTS[p.id % PRODUCTS.length];
+    const finalAngle = (p.id / particles.length) * Math.PI * 2;
+    const moduleX = layer.x - layer.w / 2 + 4 + (p.id % 7) * (layer.w / 7);
+    const moduleY = layer.y + ((p.id % 3) - 1) * 1.8;
+    const productX = product.x + Math.cos(finalAngle) * (3.5 + (p.id % 2) * 2);
+    const productY = product.y + Math.sin(finalAngle) * (2.5 + (p.id % 3) * 1.2);
+    const networkX = 50 + Math.cos(finalAngle) * (HEX_MID_R + (p.id % 3) * 3);
+    const networkY = 51 + Math.sin(finalAngle) * (HEX_MID_R + (p.id % 3) * 2);
     const x = lerp(
-      p.chaosX,
-      lerp(p.structX, p.finalX, pExperience),
-      pStruct,
+      lerp(lerp(p.chaosX, p.structX, pAnalysis), moduleX, pModules),
+      lerp(productX, networkX, pSystem),
+      pProducts,
     );
     const y = lerp(
-      p.chaosY,
-      lerp(p.structY, p.finalY, pExperience),
-      pStruct,
+      lerp(lerp(p.chaosY, p.structY, pAnalysis), moduleY, pModules),
+      lerp(productY, networkY, pSystem),
+      pProducts,
     );
-    return { x, y };
+    return { x: round(x), y: round(y) };
   };
 
-  const nodePos = (n: StructuralNode) => ({
-    x: lerp(n.chaosX, lerp(n.structX, n.finalX, pExperience), pStruct),
-    y: lerp(n.chaosY, lerp(n.structY, n.finalY, pExperience), pStruct),
-  });
+  const nodePos = (n: StructuralNode) => {
+    const product = PRODUCTS[n.id % PRODUCTS.length];
+    const final = hexPoints(50, 51, HEX_OUTER_R)[n.id % 6];
+    const x = lerp(
+      lerp(lerp(n.chaosX, n.structX, pAnalysis), product.x, pProducts),
+      final.x,
+      pSystem,
+    );
+    const y = lerp(
+      lerp(lerp(n.chaosY, n.structY, pAnalysis), product.y, pProducts),
+      final.y,
+      pSystem,
+    );
+    return { x: round(x), y: round(y) };
+  };
 
   const structEdges: [number, number][] = structuralNodes.map((_, i) => [
     i,
@@ -297,7 +368,7 @@ function CoreCanvas({
       viewBox="0 0 100 100"
       className="h-full w-full"
       role="img"
-      aria-label="The Core — visuelles Systemartefakt"
+      aria-label="DLMNS-Systemanimation: Von Komplexität über Analyse, Systemmodule und Produkte zu einem ruhigen digitalen System."
     >
       <defs>
         <pattern
@@ -335,12 +406,12 @@ function CoreCanvas({
         </filter>
       </defs>
 
-      {/* Layer 1 — Particles */}
-      <g style={parallax(0.28)} opacity={lerp(0.55, 0.22, pExperience)}>
+      {/* Layer 1 - signals */}
+      <g style={parallax(0.28)} opacity={lerp(0.62, 0.32, pSystem)}>
         {particles.map((p) => {
           const { x, y } = particlePos(p);
-          const drift = (1 - pStruct) * 0.6 * (1 - pExperience);
-          const settled = pExperience > 0.65;
+          const drift = (1 - pAnalysis) * 0.6 * (1 - pSystem);
+          const settled = pSystem > 0.65;
           return (
             <circle
               key={`pt-${p.id}`}
@@ -354,18 +425,18 @@ function CoreCanvas({
                   ? y
                   : y + Math.cos(p.id * 2.3 + scrollProgress * 3.5) * drift
               }
-              r={p.size * lerp(1.1, 0.55, pExperience)}
+              r={p.size * lerp(1.15, 0.7, pSystem)}
               fill={toneColor[p.tone]}
               opacity={
-                lerp(0.16, settled ? 0.42 : 0.5, pStruct) *
-                (1 - pExperience * 0.25)
+                lerp(0.16, settled ? 0.48 : 0.56, pAnalysis) *
+                (1 - pSystem * 0.18)
               }
             />
           );
         })}
       </g>
 
-      {/* Layer 2 — Lines & compass */}
+      {/* Layer 2 - pattern detection and system grid */}
       <g style={parallax(0.16)}>
         {weakEdges.map(([a, b], i) => {
           const pa = particlePos(particles[a]);
@@ -379,7 +450,7 @@ function CoreCanvas({
               y2={pb.y}
               stroke="var(--color-muted)"
               strokeWidth="0.1"
-              strokeOpacity={lerp(0.1, 0, pStruct)}
+              strokeOpacity={lerp(0.12, 0.02, pAnalysis) * (1 - pModules)}
               strokeDasharray="0.6 1.4"
             />
           );
@@ -396,18 +467,18 @@ function CoreCanvas({
               x2={nb.x}
               y2={nb.y}
               stroke="var(--color-gold)"
-              strokeWidth={lerp(0.12, 0.22, pExperience)}
-              strokeOpacity={pStruct * lerp(0.28, 0.08, pExperience)}
+              strokeWidth={lerp(0.12, 0.2, pSystem)}
+              strokeOpacity={pAnalysis * lerp(0.26, 0.18, pSystem)}
             />
           );
         })}
 
         {!isMobile &&
           FRAGMENTS.map((f) => {
-            const x1 = lerp(f.chaosX1, f.finalX1, pStruct);
-            const y1 = lerp(f.chaosY1, f.finalY1, pStruct);
-            const x2 = lerp(f.chaosX2, f.finalX2, pStruct);
-            const y2 = lerp(f.chaosY2, f.finalY2, pStruct);
+            const x1 = lerp(f.chaosX1, f.finalX1, pAnalysis);
+            const y1 = lerp(f.chaosY1, f.finalY1, pAnalysis);
+            const x2 = lerp(f.chaosX2, f.finalX2, pAnalysis);
+            const y2 = lerp(f.chaosY2, f.finalY2, pAnalysis);
             return (
               <line
                 key={`frag-${f.id}`}
@@ -418,7 +489,7 @@ function CoreCanvas({
                 stroke="var(--color-cyan)"
                 strokeWidth="0.14"
                 strokeOpacity={
-                  lerp(0.04, 0.18, pStruct) * (1 - pExperience * 0.75)
+                  lerp(0.04, 0.18, pAnalysis) * (1 - pSystem * 0.55)
                 }
               />
             );
@@ -430,7 +501,7 @@ function CoreCanvas({
           width="88"
           height="88"
           fill="url(#core-blueprint)"
-          opacity={pOrient * 0.38}
+          opacity={pModules * 0.32}
           rx="0.5"
         />
 
@@ -441,7 +512,7 @@ function CoreCanvas({
           y2="50"
           stroke="var(--color-cyan)"
           strokeWidth="0.12"
-          strokeOpacity={pOrient * 0.22}
+          strokeOpacity={pModules * 0.18}
           strokeDasharray="1.2 2.4"
         />
         <line
@@ -451,28 +522,28 @@ function CoreCanvas({
           y2="94"
           stroke="var(--color-cyan)"
           strokeWidth="0.12"
-          strokeOpacity={pOrient * 0.22}
+          strokeOpacity={pModules * 0.18}
           strokeDasharray="1.2 2.4"
         />
 
         <circle
           cx="50"
-          cy="50"
-          r={lerp(0, 32, pOrient)}
+          cy="51"
+          r={lerp(0, 32, pSystem)}
           fill="none"
           stroke="var(--color-gold)"
           strokeWidth="0.16"
-          strokeOpacity={pOrient * lerp(0.18, 0.06, pExperience)}
+          strokeOpacity={pSystem * 0.16}
           strokeDasharray="2 4"
         />
         <circle
           cx="50"
-          cy="50"
-          r={lerp(0, 20, pOrient)}
+          cy="51"
+          r={lerp(0, 20, pSystem)}
           fill="none"
           stroke="var(--color-cyan)"
           strokeWidth="0.12"
-          strokeOpacity={pOrient * 0.18 * (1 - pExperience * 0.6)}
+          strokeOpacity={pSystem * 0.18}
         />
 
         {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
@@ -482,24 +553,24 @@ function CoreCanvas({
           return (
             <line
               key={`tick-${deg}`}
-              x1={50 + Math.cos(rad) * inner}
-              y1={50 + Math.sin(rad) * inner}
-              x2={50 + Math.cos(rad) * outer}
-              y2={50 + Math.sin(rad) * outer}
+              x1={round(50 + Math.cos(rad) * inner)}
+              y1={round(51 + Math.sin(rad) * inner)}
+              x2={round(50 + Math.cos(rad) * outer)}
+              y2={round(51 + Math.sin(rad) * outer)}
               stroke={deg % 90 === 0 ? "var(--color-gold)" : "var(--color-cyan)"}
               strokeWidth={deg % 90 === 0 ? "0.18" : "0.1"}
-              strokeOpacity={pOrient * (deg % 90 === 0 ? 0.35 : 0.15)}
+              strokeOpacity={pSystem * (deg % 90 === 0 ? 0.3 : 0.14)}
             />
           );
         })}
       </g>
 
-      {/* Layer 3 — Nodes & hex artifact */}
+      {/* Layer 3 - DLMNS layers and product nodes */}
       <g style={parallax(0.1)}>
         {structuralNodes.map((n) => {
           const { x, y } = nodePos(n);
-          const nodeOpacity = lerp(0.12, 0.7, pStruct) * (1 - pExperience * 0.85);
-          const r = lerp(0.5, 1.1, pStruct) * lerp(1, 0.7, pExperience);
+          const nodeOpacity = lerp(0.12, 0.68, pAnalysis) * (1 - pSystem * 0.2);
+          const r = lerp(0.5, 1.05, pAnalysis) * lerp(1, 0.82, pSystem);
           if (nodeOpacity < 0.02) return null;
           return (
             <g key={`node-${n.id}`}>
@@ -521,20 +592,91 @@ function CoreCanvas({
           );
         })}
 
-        <g opacity={pExperience}>
-          <circle cx="50" cy="50" r="30" fill="url(#core-artifact-halo)" />
-          <circle cx="50" cy="50" r="14" fill="url(#core-center-glow)" />
+        <g opacity={pModules * (1 - pProducts * 0.28)}>
+          {SYSTEM_LAYERS.map((layer, index) => (
+            <g key={layer.label}>
+              <rect
+                x={layer.x - layer.w / 2}
+                y={layer.y - 3.1}
+                width={layer.w}
+                height="6.2"
+                rx="0.8"
+                fill="var(--color-background)"
+                fillOpacity="0.35"
+                stroke={toneColor[layer.tone]}
+                strokeWidth="0.16"
+                strokeOpacity={0.18 + index * 0.04}
+              />
+              <text
+                x={layer.x}
+                y={layer.y + 0.8}
+                textAnchor="middle"
+                fill="var(--color-foreground)"
+                fontSize={isMobile ? "2.8" : "1.85"}
+                fontFamily="var(--font-mono)"
+                opacity="0.72"
+              >
+                {layer.label}
+              </text>
+            </g>
+          ))}
+        </g>
 
-          {/* Compass spokes */}
+        <g opacity={pProducts}>
+          {PRODUCTS.map((product) => (
+            <g key={product.label}>
+              <line
+                x1="50"
+                y1="51"
+                x2={product.x}
+                y2={product.y}
+                stroke={toneColor[product.tone]}
+                strokeWidth="0.14"
+                strokeOpacity={lerp(0.18, 0.28, pSystem)}
+              />
+              <circle
+                cx={product.x}
+                cy={product.y}
+                r="6.5"
+                fill={toneColor[product.tone]}
+                opacity="0.05"
+              />
+              <circle
+                cx={product.x}
+                cy={product.y}
+                r="1.7"
+                fill={toneColor[product.tone]}
+                opacity="0.78"
+                filter="url(#core-node-soft)"
+              />
+              <text
+                x={product.x}
+                y={product.y + (product.y < 50 ? -7.2 : 8.8)}
+                textAnchor="middle"
+                fill="var(--color-foreground)"
+                fontSize={isMobile ? "2.9" : "2"}
+                fontFamily="var(--font-display)"
+                opacity="0.86"
+              >
+                {product.label}
+              </text>
+            </g>
+          ))}
+        </g>
+
+        <g opacity={pSystem}>
+          <circle cx="50" cy="51" r="30" fill="url(#core-artifact-halo)" />
+          <circle cx="50" cy="51" r="14" fill="url(#core-center-glow)" />
+
           {[0, 60, 120, 180, 240, 300].map((deg) => {
             const rad = (deg * Math.PI) / 180;
             return (
               <line
                 key={`spoke-${deg}`}
-                x1={50 + Math.cos(rad) * 4}
-                y1={50 + Math.sin(rad) * 4}
-                x2={50 + Math.cos(rad) * (HEX_INNER_R + 1)}
-                y2={50 + Math.sin(rad) * (HEX_INNER_R + 1)}
+                x1={round(50 + Math.cos(rad) * 4)}
+                y1={round(51 + Math.sin(rad) * 4)}
+                x2={round(50 + Math.cos(rad) * (HEX_INNER_R + 1))}
+                y2={round(51 + Math.sin(rad) * (HEX_INNER_R + 1))}
                 stroke="var(--color-cyan)"
                 strokeWidth="0.1"
                 strokeOpacity={0.2}
@@ -543,14 +685,14 @@ function CoreCanvas({
           })}
 
           <polygon
-            points={hexPointString(50, 50, HEX_OUTER_R)}
+            points={hexPointString(50, 51, HEX_OUTER_R)}
             fill="none"
             stroke="var(--color-gold)"
             strokeWidth="0.22"
             strokeOpacity="0.55"
           />
           <polygon
-            points={hexPointString(50, 50, HEX_MID_R, -Math.PI / 2 + Math.PI / 6)}
+            points={hexPointString(50, 51, HEX_MID_R, -Math.PI / 2 + Math.PI / 6)}
             fill="none"
             stroke="var(--color-cyan)"
             strokeWidth="0.14"
@@ -558,7 +700,7 @@ function CoreCanvas({
             strokeDasharray="1.5 2"
           />
           <polygon
-            points={hexPointString(50, 50, HEX_INNER_R)}
+            points={hexPointString(50, 51, HEX_INNER_R)}
             fill="none"
             stroke="var(--color-gold)"
             strokeWidth="0.18"
@@ -567,7 +709,7 @@ function CoreCanvas({
 
           <circle
             cx="50"
-            cy="50"
+            cy="51"
             r="1.6"
             fill="var(--color-gold)"
             opacity="0.75"
@@ -575,29 +717,69 @@ function CoreCanvas({
           />
           <circle
             cx="50"
-            cy="50"
+            cy="51"
             r="3.8"
             fill="none"
             stroke="var(--color-cyan)"
             strokeWidth="0.14"
             strokeOpacity="0.28"
           />
+          <text
+            x="50"
+            y="48.6"
+            textAnchor="middle"
+            fill="var(--color-gold-light)"
+            fontSize={isMobile ? "3.2" : "2.6"}
+            fontFamily="var(--font-display)"
+            opacity="0.92"
+          >
+            DLMNS
+          </text>
+          <text
+            x="50"
+            y="56.8"
+            textAnchor="middle"
+            fill="var(--color-foreground)"
+            fontSize={isMobile ? "1.9" : "1.45"}
+            fontFamily="var(--font-mono)"
+            opacity="0.56"
+          >
+            Building Intelligent Systems
+          </text>
         </g>
       </g>
 
-      {/* Layer 4 — Coordinate labels */}
+      {/* Layer 4 - deliberate semantic labels */}
       <g style={parallax(0.12)}>
-        {COORDINATES.map((coord, index) => {
-          const x = lerp(coord.chaosX, coord.finalX, pStruct);
-          const y = lerp(coord.chaosY, coord.finalY, pStruct);
+        {!isMobile &&
+          SIGNAL_LABELS.map((signal) => (
+            <text
+              key={signal.label}
+              x={signal.x}
+              y={signal.y}
+              textAnchor="middle"
+              fill="var(--color-muted)"
+              fontSize="1.35"
+              fontFamily="var(--font-mono)"
+              opacity={(1 - pModules) * 0.36}
+            >
+              {signal.label}
+            </text>
+          ))}
+
+        {PHASES.map((coord, index) => {
+          const x = lerp(coord.chaosX, coord.finalX, pAnalysis);
+          const y = lerp(coord.chaosY, coord.finalY, pAnalysis);
           const isActive = current === index;
           const isHovered = hoveredPhase === coord.id;
-          const anchor = x < 50 ? "start" : "end";
+          if (isMobile && !isActive) return null;
+
+          const anchor = x < 47 ? "start" : x > 53 ? "end" : "middle";
           const tickDir = x < 50 ? 1 : -1;
           const opacity = lerp(
             0.14,
             isActive || isHovered ? 0.92 : 0.38,
-            Math.max(pStruct, isActive ? 0.55 : 0),
+            Math.max(pAnalysis, isActive ? 0.55 : 0),
           );
 
           return (
@@ -626,9 +808,9 @@ function CoreCanvas({
                 y={y}
                 textAnchor={anchor}
                 fill={toneColor[coord.tone]}
-                fontSize="2.2"
+                fontSize={isMobile ? "3.2" : "2.2"}
                 fontFamily="var(--font-mono)"
-                letterSpacing="0.14em"
+                letterSpacing={isMobile ? "0.08em" : "0.14em"}
                 opacity="0.9"
               >
                 {coord.code}
@@ -638,13 +820,26 @@ function CoreCanvas({
                 y={y + 3.6}
                 textAnchor={anchor}
                 fill="var(--color-foreground)"
-                fontSize="1.55"
+                fontSize={isMobile ? "2.85" : "1.55"}
                 fontFamily="var(--font-mono)"
-                opacity={lerp(0.22, 0.55, pExperience)}
-                letterSpacing="0.16em"
+                opacity={isActive ? 0.82 : 0.42}
+                letterSpacing={isMobile ? "0.04em" : "0.12em"}
               >
-                / {coord.label}
+                {coord.label}
               </text>
+              {!isMobile && (
+                <text
+                  x={x}
+                  y={y + 6.2}
+                  textAnchor={anchor}
+                  fill="var(--color-muted)"
+                  fontSize="1.1"
+                  fontFamily="var(--font-mono)"
+                  opacity={isActive ? 0.5 : 0.22}
+                >
+                  {coord.detail}
+                </text>
+              )}
 
               {isActive && (
                 <g opacity={0.7}>
@@ -734,15 +929,16 @@ export function TheCore() {
     mouseY.set(0);
   }, [mouseX, mouseY]);
 
-  const displayProgress = prefersReducedMotion ? 0.82 : scrollValue;
+  const displayProgress = prefersReducedMotion ? 1 : scrollValue;
   const phase = activePhase(displayProgress);
+  const currentPhase = PHASES[phase];
 
   return (
     <section
       id="the-core"
       ref={containerRef}
       className="relative -mt-6 border-t border-border/25 md:-mt-10"
-      aria-label="The Core"
+      aria-label="DLMNS-Systemanimation"
     >
       {/* Hero → Core light bridge */}
       <div className="pointer-events-none absolute inset-x-0 -top-24 h-48 md:-top-32 md:h-56" aria-hidden="true">
@@ -796,25 +992,25 @@ export function TheCore() {
           onMouseLeave={handleMouseLeave}
         >
           <div
-            className="pointer-events-none absolute -left-1 top-6 font-mono text-[9px] uppercase tracking-[0.24em] text-muted/35 md:left-2"
+            className="pointer-events-none absolute -left-1 top-6 hidden font-mono text-[9px] uppercase tracking-[0.24em] text-muted/40 sm:block md:left-2"
             aria-hidden="true"
           >
-            <span>ARTEFAKT / KERN</span>
+            <span>DLMNS / SYSTEMREISE</span>
             <br />
-            <span>ZUSTAND / {String(phase + 1).padStart(2, "0")}</span>
+            <span>{currentPhase.code} / {currentPhase.label}</span>
           </div>
 
           <div
-            className="pointer-events-none absolute -right-1 bottom-6 font-mono text-[9px] uppercase tracking-[0.24em] text-muted/35 md:right-2"
+            className="pointer-events-none absolute -right-1 bottom-6 hidden text-right font-mono text-[9px] uppercase tracking-[0.24em] text-muted/40 sm:block md:right-2"
             aria-hidden="true"
           >
-            <span>TIEFE / 05</span>
+            <span>LOGIK / PRODUKTSYSTEM</span>
             <br />
-            <span>EBENE / AKTIV</span>
+            <span>INTERFACE / DATEN / KI</span>
           </div>
 
           <motion.div
-            className="relative aspect-[4/3] w-full md:aspect-[16/10]"
+            className="relative aspect-[5/4] w-full sm:aspect-[4/3] md:aspect-[16/10]"
             style={prefersReducedMotion ? undefined : { scale: entryScale }}
           >
             <div
@@ -846,16 +1042,16 @@ export function TheCore() {
           </motion.div>
 
           <div
-            className="mt-8 flex justify-center gap-5 md:gap-12"
+            className="mt-6 grid grid-cols-5 gap-2 sm:flex sm:justify-center sm:gap-5 md:mt-8 md:gap-12"
             role="list"
-            aria-label="Koordinaten der Transformationsphasen"
+            aria-label="DLMNS-Transformationsphasen"
           >
-            {COORDINATES.map((coord, index) => (
+            {PHASES.map((coord, index) => (
               <div
                 key={coord.id}
                 role="listitem"
                 className={cn(
-                  "flex flex-col items-center font-mono text-[8px] uppercase tracking-[0.22em] md:text-[9px]",
+                  "flex min-w-0 flex-col items-center text-center font-mono text-[8px] uppercase tracking-[0.06em] sm:text-[8px] sm:tracking-[0.16em] md:text-[9px] md:tracking-[0.22em]",
                   phase === index
                     ? coord.tone === "gold"
                       ? "text-gold/80"
@@ -867,8 +1063,8 @@ export function TheCore() {
                 aria-current={phase === index ? "step" : undefined}
               >
                 <span className="opacity-80">{coord.code}</span>
-                <span className="mt-0.5 text-[7px] tracking-[0.18em] opacity-50 md:text-[8px]">
-                  / {coord.label}
+                <span className="mt-0.5 max-w-full truncate text-[7px] tracking-[0.02em] opacity-60 sm:tracking-[0.12em] md:text-[8px]">
+                  {coord.label}
                 </span>
                 <span
                   className={cn(
@@ -893,7 +1089,10 @@ export function TheCore() {
       />
 
       <div
-        className={cn("h-[400vh]", prefersReducedMotion && "hidden")}
+        className={cn(
+          isMobile ? "h-[270vh]" : "h-[400vh]",
+          prefersReducedMotion && "hidden",
+        )}
         aria-hidden="true"
       />
     </section>
